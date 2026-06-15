@@ -324,31 +324,28 @@ body {
   }
 }
 .phoneFrame {
-  width: 100%;
-  height: 100%;
-border: 0;
-  margin: 0 auto;
-
   position: relative;
+  width: 340px;
+  height: 680px;
+  margin: 30px auto;
+  padding: 12px;
 
+  background: linear-gradient(145deg, #323844, #111827);
   border-radius: 48px;
 
-  /* REAL PHONE BODY */
-  background: linear-gradient(145deg, #3a3f4a, #1f2430);
-
-  padding: 18px;
-
-  
+  border: 2px solid rgba(255,255,255,0.08);
 
   box-shadow:
-    0 40px 120px rgba(0, 0, 0, 0.75),
-    inset 0 0 0 2px rgba(255,255,255,0.03);
+    0 30px 80px rgba(0,0,0,0.55),
+    inset 0 2px 3px rgba(255,255,255,0.08),
+    inset 0 -2px 3px rgba(0,0,0,0.4);
 
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
+  overflow: hidden; /* OK, ali sada kontrolisano */
+}
 .phoneFrame {
   position: relative;
   width: 340px;
@@ -366,7 +363,11 @@ border: 0;
     inset 0 2px 3px rgba(255,255,255,0.08),
     inset 0 -2px 3px rgba(0,0,0,0.4);
 
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden; /* OK, ali sada kontrolisano */
 }
 
 /* NOTCH */
@@ -678,7 +679,31 @@ border: 0;
 
 
 
+.soundBtn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 
+  width: 44px;
+  height: 44px;
 
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+
+  font-size: 18px;
+  cursor: pointer;
+
+  z-index: 10;
+
+  transition: 0.2s ease;
+}
+
+.soundBtn:hover {
+  transform: scale(1.1);
+  background: rgba(0,0,0,0.8);
+}
 
 

@@ -6,7 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (pass === "admin123") {
+    if (pass === "Selmirpmf123!") {
       localStorage.setItem("auth", "true");
       navigate("/prijave");
     } else {

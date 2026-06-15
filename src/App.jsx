@@ -11,9 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function App() {
 
 
-
-
-
+const iframeRef = useRef(null);
 
   const fullText = "Isprobaj 7 dana ________"
 
@@ -31,30 +29,16 @@ const navigate = useNavigate();
   const [visibleAbout, setVisibleAbout] = useState(false)
   const [visibleVideo, setVisibleVideo] = useState(false)
 
-const iframeRef = useRef(null);
-const playerRef = useRef(null);
-
+ 
  
  const [phone, setPhone] = useState("");
 const [info, setInfo] = useState("");
  
  
  
-useEffect(() => {
-  const iframe = iframeRef.current;
-  if (!iframe) return;
+ 
 
-  const player = new Player(iframe);
-  playerRef.current = player;
 
-  player.ready().then(() => {
-    player.play().catch(() => {});
-  });
-
-  return () => {
-    player.destroy();
-  };
-}, []);
 
 
   // TEXT ANIMATION
@@ -106,11 +90,7 @@ useLayoutEffect(() => {
  
  
  
- 
- 
- 
 const handleSubmit = async () => {
-
   if (!phone.trim()) {
     alert("Unesite broj telefona");
     return;
@@ -248,7 +228,7 @@ const handleSubmit = async () => {
         ref={videoRef}
         className={`section ${visibleVideo ? "show" : ""}`}
       >
-        <h2>VAŠ RESTORAN</h2>
+        <h2>  </h2>
 <div className="phoneFrame">
   
   <div className="powerBtn" />
@@ -256,13 +236,13 @@ const handleSubmit = async () => {
   <div className="volDown" />
 
 <iframe
-  src="https://player.vimeo.com/video/1201021361?autoplay=1&loop=1&muted=1&background=1"
-  width="100%"
-  height="100%"
-  frameborder="0"
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen
-></iframe>
+  ref={iframeRef}
+  src="https://player.vimeo.com/video/1201021361?autoplay=1&loop=1"
+  allow="autoplay; fullscreen"
+  style={{ width: "100%", height: "100%", border: 0 }}
+/>
+
+
 </div>
       </section>
 
@@ -319,13 +299,15 @@ const handleSubmit = async () => {
     <div className="copyright">
       © 2026 All rights reserved
     </div>
+	
+	 <button className="panelBtn" onClick={() => navigate("/prijave")}>
+    📊 Otvori Panel
+  </button>
 
   </div>
   
   <div className="ctaWrapper">
-  <button className="panelBtn" onClick={() => navigate("/prijave")}>
-    📊 Otvori Panel
-  </button>
+ 
 </div>
   
 </footer>
