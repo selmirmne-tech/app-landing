@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-
+import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCIo7jynlobq1RUNhHFpOzD7kUdtv7qR14",
   authDomain: "prijave-95663.firebaseapp.com",
@@ -14,3 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getDatabase(app);
+
+// AUTH (OVO JE NOVO)
+export const auth = getAuth(app);
