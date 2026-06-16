@@ -8,6 +8,7 @@ import {  ref, push, set } from "firebase/database";
 import { db } from "./firebase";
 import { useNavigate } from "react-router-dom";
 
+
 export default function App() {
 
 
@@ -114,7 +115,7 @@ const handleSubmit = async () => {
     setPhone("");
     setInfo("");
 
-    setTimeout(() => setSent(false), 3000);
+    setTimeout(() => setSent(false), 5000);
 
   } catch (error) {
     console.error(error);
@@ -139,7 +140,8 @@ const handleSubmit = async () => {
           </h1>
 
           <p className="subtitleMain">
-            Sistem za upravljanje narudžbama u restoranu
+            Ne gubite narudžbe ni u najvećoj gužvi!
+
           </p>
 
           <p className="subtitle">
@@ -152,25 +154,23 @@ const handleSubmit = async () => {
         <div className="trustBlock">
           <div className="benefitsGrid">
 
-            <div className="benefitCard">
-              <FaBolt className="benefitIcon" />
-              <span>Brža obrada narudžbi</span>
+            
+			 <div className="benefitCard">
+              <FaChartLine className="benefitIcon" />
+              <span>Više usluženih gosti i veći profit</span>
             </div>
 
             <div className="benefitCard">
               <FaShieldAlt className="benefitIcon" />
-              <span>Siguran i stabilan sistem</span>
+              <span>Sve narudžbe i profit na jednom mjestu</span>
             </div>
 
             <div className="benefitCard">
-              <FaChartLine className="benefitIcon" />
-              <span>Bolja organizacija rada</span>
+               <FaBolt className="benefitIcon" />
+              <span>Bez grešaka u serviranju i manje stresa za osoblje</span>
             </div>
 
-            <div className="benefitCard">
-              <FaMoneyBillWave className="benefitIcon" />
-              <span>Veća efikasnost i profit</span>
-            </div>
+           
 
           </div>
         </div>
@@ -253,10 +253,42 @@ const handleSubmit = async () => {
       >
         <h2>O aplikaciji</h2>
 
-        <div className="aboutText">
-          Sistem za upravljanje restoranom u realnom vremenu —
-          narudžbe, kuhinja i osoblje na jednom mjestu.
-        </div>
+ 
+ 
+ <div className="aboutText">
+
+  <p className="aboutLead">
+    VAŠ RESTORAN
+  </p>
+
+  <div className="aboutBlock">
+    <p>
+      Konobari unose narudžbe, a kuhinja ih odmah prima i izdaje bez grešaka i čekanja.
+    </p>
+    <p>
+      Svaka narudžba se automatski evidentira i povezuje sa računom i konobarom.
+    </p>
+  </div>
+
+  <div className="aboutBlock">
+    <p>
+      Vlasnici imaju potpunu kontrolu nad poslovanjem — pazar, smjene, mjesečni izvještaji i učinak osoblja.
+    </p>
+    <p>
+      Sistem eliminiše ljudski faktor (greške) i daje jasnu sliku profita u svakom trenutku.
+    </p>
+  </div>
+
+  <div className="aboutBlock">
+    <p>
+      Tri nivoa pristupa: Administratori, Konobari i Kuhinja — svaki sa jasno definisanim pravima.
+    </p>
+  </div>
+
+</div>
+ 
+ 
+ 
 
         <div className="aboutImageWrap">
           <img src={ss1} alt="preview" />

@@ -1,4 +1,5 @@
- 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 html, body {
   width: 100%;
   overflow-x: hidden;
@@ -77,12 +78,6 @@ body {
   margin-top: 20px;
 }
 
-.benefitsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 15px;
-}
 
 .benefitCard {
   padding: 12px;
@@ -204,14 +199,54 @@ body {
 /* =======================
    ABOUT
 ======================= */
-
 .aboutText {
-  max-width: 600px;
-  margin: auto;
-  opacity: 0.8;
-  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+
+  font-family: "Inter", system-ui, sans-serif;
+  color: rgba(255,255,255,0.85);
+  font-size: 15.5px;
+  line-height: 1.75;
 }
 
+/* "VAŠ RESTORAN" */
+.aboutLead {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+
+  color: white;
+  margin-bottom: 28px;
+
+  font-family: "Inter", system-ui, sans-serif;
+  text-transform: uppercase;
+}
+
+/* BLOKOVI */
+.aboutBlock {
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 2px solid rgba(124, 92, 255, 0.6);
+}
+
+.aboutBlock p {
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+/* FINISH LOOK */
+.aboutBlock p:last-child {
+  margin-bottom: 0;
+}
+/* ZAVRŠETAK */
+.aboutFooter {
+  margin-top: 22px;
+  font-weight: 600;
+  color: white;
+  opacity: 0.9;
+}
 .aboutImageWrap img {
   width: 280px;
   margin-top: 20px;
@@ -539,16 +574,17 @@ body {
 
 .benefitsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+   grid-template-columns: 1fr;
+
   gap: 15px;
 
   width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0 20px; /* da ne zalijepi uz ivicu (opcionalno) */
-
-  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  
 }
+
 
 .benefitCard {
   display: flex;

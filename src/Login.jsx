@@ -7,9 +7,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [loading, setLoading] = useState(false);
-
+ 
   const navigate = useNavigate();
-
+  
   const handleLogin = async () => {
     if (!email || !pass) {
       alert("Unesite email i šifru");
@@ -25,6 +25,7 @@ export default function Login() {
     } catch (error) {
       console.error(error);
       alert("Pogrešan login ili korisnik ne postoji");
+	  
     } finally {
       setLoading(false);
     }
@@ -57,7 +58,7 @@ export default function Login() {
 
         <input
           type="password"
-          placeholder="Šifra"
+          placeholder="Password"
           value={pass}
           onChange={(e) => setPass(e.target.value)}
           style={{ width: "100%", padding: "10px", marginTop: "10px" }}
@@ -75,6 +76,9 @@ export default function Login() {
         >
           {loading ? "Logging in..." : "Login"}
         </button>
+		
+ 
+		
       </div>
     </div>
   );
