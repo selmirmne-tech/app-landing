@@ -190,17 +190,15 @@ const handleSubmit = async () => {
 
             {!sent ? (
               <>
-			   
 <input
   type="tel"
   placeholder="Broj telefona"
   value={phone}
   onChange={(e) => {
-    const onlyNumbers = e.target.value.replace(/\D/g, "");
-    setPhone(onlyNumbers);
+    const value = e.target.value.replace(/[^\d+]/g, "");
+    setPhone(value);
   }}
 />
-
 <textarea
   placeholder="Dodatne informacije (nije obavezno)"
   value={info}
