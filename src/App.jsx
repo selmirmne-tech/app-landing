@@ -492,11 +492,7 @@ useEffect(() => {
     ))}
   </div>
  
-  
-   <div className="aboutImageWrap">
-          <img src={ss1} alt="preview" />
-        </div>
-  
+ 
   
   
 </section>
