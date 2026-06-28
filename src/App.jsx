@@ -449,13 +449,19 @@ useEffect(() => {
     <p class="desc">Potpuni pristup svim funkcijama+podrška 24/7</p>
   </div>
 
-  <div class="pricing-card yearly highlight">
-    <h3>Godišnje</h3>
-    <p class="price">200€ <span class="old-price">240€</span></p>
-    <p class="desc">Najbolja opcija — ušteda 40€/godišnje Potpuni pristup svim funkcijama+podrška 24/7
+<div className="pricing-card yearly highlight">
+  <div className="recommendedBadge">PREPORUČENO</div>
 
-</p>
-  </div>
+  <h3>Godišnje</h3>
+
+  <p className="price">
+    200€ <span className="old-price">240€</span>
+  </p>
+
+  <p className="desc">
+    Najbolja opcija — ušteda 40€/godišnje. Potpuni pristup svim funkcijama + podrška 24/7
+  </p>
+</div>
 
 </div>
 	  

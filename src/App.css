@@ -852,44 +852,61 @@ body {
  
 
 .pricing-wrapper {
-  max-width: 800px;
-  margin: 50px auto;
+  max-width: 900px;
+  margin: 60px auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 .pricing-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px 25px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: 0.2s ease;
-  border-left: 5px solid transparent;
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: 0.25s ease;
+  border-left: 6px solid transparent;
+  position: relative;
+}
+
+.recommendedBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff9800;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .pricing-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
 
 .pricing-card h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   color: #222;
 }
-
+ 
 .price {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 10px 0 5px;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0 6px;
   color: #111;
 }
 
 .desc {
   color: #666;
   font-size: 14px;
+  line-height: 1.4;
 }
 
 /* FREE */
@@ -902,33 +919,58 @@ body {
   border-left-color: #3498db;
 }
 
-/* YEARLY (highlight) */
+/* YEARLY */
 .yearly {
   border-left-color: #f39c12;
 }
 
+/* highlight kartica */
 .highlight {
-  background: linear-gradient(135deg, #fff, #fff8e6);
-  position: relative;
+  background: linear-gradient(135deg, #ffffff, #fff7e0);
+  transform: scale(1.01);
 }
 
-.highlight::after {
-  content: "PREPORUČENO";
+/* badge */
+.badge {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 14px;
+  right: 14px;
   background: #f39c12;
   color: white;
   font-size: 11px;
   padding: 4px 8px;
   border-radius: 6px;
+  font-weight: bold;
 }
 
+/* old price */
 .old-price {
   text-decoration: line-through;
   color: #999;
   font-size: 16px;
   margin-left: 8px;
+}
+ 
+/* buttons */
+.btn {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  background: #eee;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn.primary {
+  background: #f39c12;
+  color: white;
+  font-weight: bold;
 }
  .toast {
   position: fixed;
