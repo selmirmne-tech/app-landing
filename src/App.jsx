@@ -7,6 +7,13 @@ import Player from "@vimeo/player"
 import {  ref, push, set } from "firebase/database";
 import { db } from "./firebase";
 import { useNavigate } from "react-router-dom";
+import { FaUsers } from "react-icons/fa";
+
+import {
+ 
+  FaClock,
+  
+} from "react-icons/fa";
 
 
 export default function App() {
@@ -23,6 +30,7 @@ const navigate = useNavigate();
   const [text, setText] = useState("")
   const [showStamp, setShowStamp] = useState(false)
   const [sent, setSent] = useState(false)
+  const [openFaq, setOpenFaq] = useState(null);
 
   const aboutRef = useRef(null)
   const videoRef = useRef(null)
@@ -36,9 +44,10 @@ const navigate = useNavigate();
 const [info, setInfo] = useState("");
  
  
+ const [toast, setToast] = useState(null);
+const [toastType, setToastType] = useState("error"); // error | success
  
- 
-
+const toastTimeoutRef = useRef(null);
 
 
 
@@ -91,14 +100,31 @@ useLayoutEffect(() => {
  
  
  
+const showToast = (message, type = "error") => {
+  setToast(message);
+  setToastType(type);
+
+  // očisti prethodni timeout
+  if (toastTimeoutRef.current) {
+    clearTimeout(toastTimeoutRef.current);
+  }
+
+  // novi timeout
+  toastTimeoutRef.current = setTimeout(() => {
+    setToast(null);
+  }, 3000);
+};
+ 
+ 
 const handleSubmit = async () => {
   if (!phone.trim()) {
-    alert("Unesite broj telefona");
+    showToast("Unesite broj telefona", "error");
+ 
     return;
   }
 
   if (phone.length < 9) {
-    alert("Greska, broj nije ispravan.");
+    showToast("Broj nije ispravan.", "error");
     return;
   }
 
@@ -123,6 +149,95 @@ const handleSubmit = async () => {
   }
 };
 
+
+
+const benefits = [
+ 
+   {
+    icon: <FaClock className="benefitIcon" />,
+    text: "Brža usluga"
+  },
+  {
+    icon: <FaChartLine className="benefitIcon" />,
+    text: "Više usluženih gostiju i veći profit"
+  },
+  {
+    icon: <FaShieldAlt className="benefitIcon" />,
+    text: "Sve narudžbe i profit na jednom mjestu"
+  },
+  {
+  icon: <FaUsers className="benefitIcon" />,
+  text: "Manje stresa za konobare i kuhinju"
+  },
+   {
+    icon: <FaBolt className="benefitIcon" />,
+    text: "Početak korišćenja za nekoliko minuta"
+  }
+];
+
+
+const faqs = [
+  {
+    q: "Kome je aplikacija namijenjena?",
+    a: "Aplikacija je namijenjena svim ugostiteljskim objektima koji žele da digitalizuju proces naručivanja hrane, unaprijede organizaciju rada i u svakom trenutku imaju uvid u promet i poslovne izvještaje."
+  },
+ 
+ 
+  {
+    q: "Da li obučavate osoblje?",
+    a: "Da. Nakon instalacije pružamo kratku obuku kako bi konobari, kuhinja i administratori mogli da koriste sistem."
+  },
+ 
+  {
+    q: "Da li aplikacija radi bez interneta?",
+    a: "Ne, aplikacija za sinhronizaciju podataka zahtijeva aktivnu internet konekciju kako bi sve funkcije radile ispravno i podaci bili ažurirani u realnom vremenu."
+  },
+  
+    {
+    q: "Da li aplikacija dobija redovne nadogradnje?",
+    a: "Da. Aplikacija se kontinuirano unapređuje kroz nove funkcionalnosti, optimizacije i poboljšanja sistema, kako bi uvijek bila u skladu sa potrebama ugostiteljskog poslovanja."
+  },
+  {
+    q: "Koliko traje instalacija?",
+    a: "Instalacija se završava u kratkom roku i aplikacija je odmah spremna za korišćenje na vašim uređajima."
+  },
+ 
+  {
+    q: "Da li mogu koristiti postojeći tablet ili telefon?",
+    a: "Da. Aplikacija radi na Android uređajima koji ispunjavaju minimalne tehničke zahtjeve."
+  },
+  {
+    q: "Da li je moguće prilagoditi aplikaciju mom restoranu?",
+    a: "Da. Moguće je prilagoditi meni, kategorije, korisnička prava i dodatne funkcionalnosti prema vašim potrebama."
+  },
+  {
+    q: "Da li su podaci sigurni?",
+    a: "Da. Podaci se čuvaju sigurno i pristup imaju samo ovlašteni korisnici prema dodijeljenim ovlaštenjima."
+  },
+   {
+    q: "Koji su načini plaćanja?",
+    a: "Plaćanje se vrši bankovnim transverom. Preko aplikacije koju koristite od banke ili u vašoj banci navodite IBAN i ime primaoca koje ćete dobiti ako budete zadovoljni probnim periodom. Možete odabrati jednokratnu kupovinu ili mjesečnu pretplatu. Koju god da odaberete pružamo kontinuiranu tehničku podršku i održavanje u skladu s potrebama vašeg poslovanja."
+  }
+  
+];
+
+
+
+
+const [startIndex, setStartIndex] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setStartIndex((prev) => {
+      const next = prev + 2;
+      return next >= benefits.length ? 0 : next;
+    });
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, []);
+
+
   return (
     <div className="page">
 
@@ -132,6 +247,7 @@ const handleSubmit = async () => {
         <header className="header">
 
           <h1 className="title stampTitle">
+		   
             <span className="gradient">{text}</span>
 
             {showStamp && (
@@ -140,41 +256,51 @@ const handleSubmit = async () => {
           </h1>
 
           <p className="subtitleMain">
-            Ne gubite narudžbe ni u najvećoj gužvi!
+		  
+		      
+            Ne gubite narudžbe ni tokom najvećih gužvi!
 
           </p>
 
-          <p className="subtitle">
-            Brza prijava i početak korišćenja u par sekundi
-          </p>
+<p className="subtitle">
+  Aplikacija za vaš ugostiteljski objekat.
+</p>
+	
+    <p className="subtitle">
+  Digitalizujte narudžbe i pregled poslovanja.
+</p>
+ 	   
+		   
+ 
+		   
+ 
 		   
         </header>
 
+
+ 
+
+
+
         {/* BENEFITS */}
-        <div className="trustBlock">
-          <div className="benefitsGrid">
+<div className="trustBlock">
+  <div className="benefitsGrid">
+  <div className="benefitsGrid animatedBenefits">
+  <div className="benefitCard">
+    {benefits[startIndex].icon}
+    <span>{benefits[startIndex].text}</span>
+  </div>
 
-            
-			 <div className="benefitCard">
-              <FaChartLine className="benefitIcon" />
-              <span>Više usluženih gosti i veći profit</span>
-            </div>
-
-            <div className="benefitCard">
-              <FaShieldAlt className="benefitIcon" />
-              <span>Sve narudžbe i profit na jednom mjestu</span>
-            </div>
-
-            <div className="benefitCard">
-               <FaBolt className="benefitIcon" />
-              <span>Bez grešaka u serviranju i manje stresa za osoblje</span>
-            </div>
-
-           
-
-          </div>
-        </div>
-
+  <div className="benefitCard">
+    {benefits[(startIndex + 1) % benefits.length].icon}
+    <span>{benefits[(startIndex + 1) % benefits.length].text}</span>
+  </div>
+</div>
+</div>
+</div>
+ 
+ 
+ 
         {/* FORM */}
         <div className="formWrapper">
 
@@ -186,14 +312,17 @@ const handleSubmit = async () => {
 
           <div className="formCard">
             <h3>Prijava restorana</h3>
-            <p>Popunite podatke i kontaktiraćemo vas uskoro</p>
+            <p>Popunite podatke</p>
 
             {!sent ? (
               <>
 <input
   type="tel"
   placeholder="Broj telefona"
+  
   value={phone}
+    autoComplete="off"
+
   onChange={(e) => {
     const value = e.target.value.replace(/[^\d+]/g, "");
     setPhone(value);
@@ -202,6 +331,8 @@ const handleSubmit = async () => {
 <textarea
   placeholder="Dodatne informacije (nije obavezno)"
   value={info}
+    autoComplete="off"
+
   onChange={(e) => setInfo(e.target.value)}
 />
                 <button onClick={handleSubmit}>
@@ -219,6 +350,9 @@ const handleSubmit = async () => {
 
         </div>
 
+
+ 
+
       </section>
 
       {/* VIDEO */}
@@ -226,12 +360,15 @@ const handleSubmit = async () => {
         ref={videoRef}
         className={`section ${visibleVideo ? "show" : ""}`}
       >
-        <h2>  </h2>
+        <h2> Demonstracija </h2>
 <div className="phoneFrame">
   
   <div className="powerBtn" />
   <div className="volUp" />
   <div className="volDown" />
+
+
+ 
 
 <iframe
   ref={iframeRef}
@@ -288,12 +425,81 @@ const handleSubmit = async () => {
  
  
 
-        <div className="aboutImageWrap">
+        
+      </section>
+	  
+	  
+	  
+ <div class="pricing-wrapper">
+
+  <div class="pricing-card free">
+    <h3>Besplatna probna verzija</h3>
+    <p class="price">7 dana besplatno</p>
+    <p class="desc">Potpuni pristup svim funkcijama</p>
+  </div>
+
+  <div class="pricing-card monthly">
+    <h3>Mjesečno</h3>
+    <p class="price">20€ / mjesec</p>
+    <p class="desc">Potpuni pristup svim funkcijama+podrška 24/7</p>
+  </div>
+
+  <div class="pricing-card yearly highlight">
+    <h3>Godišnje</h3>
+    <p class="price">200€ <span class="old-price">240€</span></p>
+    <p class="desc">Najbolja opcija — ušteda 40€/godišnje Potpuni pristup svim funkcijama+podrška 24/7
+
+</p>
+  </div>
+
+</div>
+	  
+
+
+
+
+
+ <section className="faqSection">
+  <h2>Često postavljena pitanja</h2>
+
+  <div className="faqWrapper">
+    {faqs.map((item, index) => (
+      <div
+        key={index}
+        className={`faqItem ${openFaq === index ? "active" : ""}`}
+      >
+        <div
+          className="faqQuestion"
+          onClick={() =>
+            setOpenFaq(openFaq === index ? null : index)
+          }
+        >
+          <span>{item.q}</span>
+          <span className="faqIcon">
+            {openFaq === index ? "−" : "+"}
+          </span>
+        </div>
+
+        <div className="faqAnswer">
+          <p>{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+ 
+  
+   <div className="aboutImageWrap">
           <img src={ss1} alt="preview" />
         </div>
-      </section>
+  
+  
+  
+</section>
+
+
 
  
+
 
 
  {/* FOOTER */}
@@ -340,11 +546,24 @@ const handleSubmit = async () => {
  
 </div>
   
+  
+ 
+  
+  
+  
 </footer>
 
     <Analytics />
-
-
+ 
+ {toast && (
+  <div className={`toast ${toastType}`}>
+    <span className="toastIcon">!</span>
+    {toast}
+  </div>
+)}
+ 
+ 
+ 
     </div>
   )
 }

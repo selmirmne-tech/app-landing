@@ -20,6 +20,13 @@ body {
   color: white;
 }
 
+
+
+
+
+
+
+
 /* =======================
    PAGE / HERO
 ======================= */
@@ -60,12 +67,14 @@ body {
 
 .subtitleMain {
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 0px;
   text-align:center;
+  margin-bottom:3px;
    
 }
 
 .subtitle {
+	margin-bottom:3px;
   opacity: 0.6;
   text-align:center;
 }
@@ -96,6 +105,7 @@ body {
   justify-content: center;
   margin-top: 40px;
   width: 100%;
+  padding:0 10px;
 }
 
 .formCard {
@@ -250,7 +260,20 @@ body {
 .aboutImageWrap img {
   width: 280px;
   margin-top: 20px;
+  
   border-radius: 16px;
+}
+
+.aboutImageWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutImageWrap img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* =======================
@@ -288,8 +311,11 @@ body {
 
 .freeStamp {
   position: absolute;
-  top: -12px;
-  right: -40px;
+
+  top: -18px;          /* ⬅️ iznad teksta */
+  right: -10px;
+
+  transform: rotate(-10deg) scale(0);
 
   padding: 8px 14px;
 
@@ -302,14 +328,30 @@ body {
 
   border-radius: 12px;
 
-  background: rgba(34,197,94,0.08);
-
-  transform: rotate(-10deg) scale(0);
-  animation: stampIn 0.45s ease forwards;
+  background: rgba(34, 197, 94, 0.08);
 
   box-shadow:
-    0 0 25px rgba(34,197,94,0.35),
-    inset 0 0 12px rgba(34,197,94,0.15);
+    0 0 25px rgba(34, 197, 94, 0.35),
+    inset 0 0 12px rgba(34, 197, 94, 0.15);
+
+  animation: stampIn 0.45s ease forwards;
+
+  z-index: 10; /* ⬅️ da bude iznad linija/underline-a */
+}
+
+
+
+@media (max-width:768px){
+
+.freeStamp{
+
+    right:4px;
+
+    font-size:11px;
+
+    padding:5px 9px;
+}
+
 }
 
 @keyframes stampIn {
@@ -587,6 +629,7 @@ body {
 
 
 .benefitCard {
+	min-height: 70px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -743,3 +786,219 @@ body {
 }
 
 
+.animatedBenefits {
+  animation: fadeBenefits .5s ease;
+}
+
+@keyframes fadeBenefits {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.faqSection {
+  padding: 80px 20px;
+  color: white;
+  max-width: 900px;
+  margin: auto;
+  
+}
+
+.faqSection h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 25px;
+}
+
+.faqWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faqItem {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.faqQuestion {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+  padding: 0 18px;
+  opacity: 0.7;
+}
+
+.faqItem.active .faqAnswer {
+  max-height: 200px;
+  padding-bottom: 18px;
+}
+
+.faqIcon {
+  font-size: 20px;
+}
+
+.guaranteeBox {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  font-weight: 600;
+  opacity: 0.9;
+} 
+ 
+ 
+ 
+
+.pricing-wrapper {
+  max-width: 800px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.pricing-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: 0.2s ease;
+  border-left: 5px solid transparent;
+}
+
+.pricing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.pricing-card h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  color: #111;
+}
+
+.desc {
+  color: #666;
+  font-size: 14px;
+}
+
+/* FREE */
+.free {
+  border-left-color: #2ecc71;
+}
+
+/* MONTHLY */
+.monthly {
+  border-left-color: #3498db;
+}
+
+/* YEARLY (highlight) */
+.yearly {
+  border-left-color: #f39c12;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #fff, #fff8e6);
+  position: relative;
+}
+
+.highlight::after {
+  content: "PREPORUČENO";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #f39c12;
+  color: white;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 16px;
+  margin-left: 8px;
+}
+ .toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: white;
+  z-index: 9999;
+
+  animation: toastIn 0.25s ease;
+}
+
+/* ERROR (RED) */
+.toast.error {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+}
+
+/* SUCCESS (ako kasnije želiš) */
+.toast.success {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
+}
+
+.toastIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
