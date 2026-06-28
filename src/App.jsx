@@ -187,6 +187,11 @@ const faqs = [
     q: "Da li obučavate osoblje?",
     a: "Da. Nakon instalacije pružamo kratku obuku kako bi konobari, kuhinja i administratori mogli da koriste sistem."
   },
+  
+  {
+  q: "Na kojim jezicima je dostupna aplikacija?",
+  a: "Aplikacija trenutno podržava Srpski, Engleski, Francuski i Njemački jezik."
+},
  
   {
     q: "Da li aplikacija radi bez interneta?",

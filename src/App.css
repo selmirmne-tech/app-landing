@@ -257,24 +257,7 @@ body {
   color: white;
   opacity: 0.9;
 }
-.aboutImageWrap img {
-  width: 280px;
-  margin-top: 20px;
-  
-  border-radius: 16px;
-}
-
-.aboutImageWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.aboutImageWrap img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+ 
 
 /* =======================
    TEXT ANIMATION
