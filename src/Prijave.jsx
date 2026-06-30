@@ -10,6 +10,11 @@ export default function Prijave() {
   const navigate = useNavigate();
   const [prijave, setPrijave] = useState([]);
 
+
+
+const [checking, setChecking] = useState(true);
+
+
   const [notes, setNotes] = useState({});
   const [openNotes, setOpenNotes] = useState({});
 
@@ -48,14 +53,16 @@ export default function Prijave() {
   };
 
   // AUTH CHECK
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      if (!user) navigate("/login");
-    });
+useEffect(() => {
+  const unsub = onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      navigate("/login");
+    }
+    setChecking(false);
+  });
 
-    return () => unsub();
-  }, [navigate]);
-
+  return () => unsub();
+}, [navigate]);
   // FIREBASE DATA
   useEffect(() => {
     const starRef = ref(db, "PRIJAVE");
@@ -87,7 +94,14 @@ export default function Prijave() {
     remove(ref(db, `PRIJAVE/${id}`));
   };
 
+
+if (checking) return null;
+
   return (
+  
+  
+  
+  
     <div className="page">
       <h1 className="title">📋 Prijave</h1>
 

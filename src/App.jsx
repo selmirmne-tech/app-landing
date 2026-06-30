@@ -8,6 +8,7 @@ import {  ref, push, set } from "firebase/database";
 import { db } from "./firebase";
 import { useNavigate } from "react-router-dom";
 import { FaUsers } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
 
 import {
  
@@ -38,7 +39,8 @@ const navigate = useNavigate();
   const [visibleAbout, setVisibleAbout] = useState(false)
   const [visibleVideo, setVisibleVideo] = useState(false)
 
- 
+ const auth = getAuth();
+
  
  const [phone, setPhone] = useState("");
 const [info, setInfo] = useState("");
@@ -50,6 +52,15 @@ const [toastType, setToastType] = useState("error"); // error | success
 const toastTimeoutRef = useRef(null);
 
 
+const handlePanel = () => {
+  const user = auth.currentUser;
+
+  if (user) {
+    navigate("/Prijave");
+  } else {
+    navigate("/Login");
+  }
+};
 
   // TEXT ANIMATION
   useEffect(() => {
@@ -316,7 +327,7 @@ useEffect(() => {
 
 
           <div className="formCard">
-            <h3>Prijava restorana</h3>
+            <h3>Prijava vašeg restorana</h3>
             <p>Popunite podatke</p>
 
             {!sent ? (
@@ -543,9 +554,9 @@ useEffect(() => {
       © 2026 All rights reserved
     </div>
 	
-	 <button className="panelBtn" onClick={() => navigate("/prijave")}>
-    📊 Otvori Panel
-  </button>
+	 <button className="panelBtn" onClick={handlePanel}>
+  📊 Otvori Panel
+</button>
 
   </div>
   

@@ -21,7 +21,7 @@ export default function Login() {
 
       await signInWithEmailAndPassword(auth, email, pass);
 
-      navigate("/prijave");
+      navigate("/prijave", { replace: true });
     } catch (error) {
       console.error(error);
       alert("Pogrešan login ili korisnik ne postoji");
