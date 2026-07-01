@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import ss1 from "./assets/ss1.png"
-import { FaBolt, FaShieldAlt, FaChartLine, FaMoneyBillWave, FaFingerprint } from "react-icons/fa";
+import { FaBolt, FaShieldAlt,FaCheckCircle , FaChartLine, FaMoneyBillWave, FaFingerprint } from "react-icons/fa";
 import { useLayoutEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Player from "@vimeo/player"
@@ -22,7 +22,7 @@ export default function App() {
 
 const iframeRef = useRef(null);
 
-  const fullText = "Isprobaj 7 dana ________"
+  const fullText = "Isprobaj 7 dana _______"
 
 
 
@@ -183,8 +183,13 @@ const benefits = [
    {
     icon: <FaBolt className="benefitIcon" />,
     text: "Početak korišćenja za nekoliko minuta"
-  }
-];
+  },
+  
+  {
+  icon: <FaCheckCircle className="benefitIcon" />,
+  text: "Bez grešaka u narudžbama"
+}
+ ];
 
 
 const faqs = [
@@ -279,11 +284,11 @@ useEffect(() => {
           </p>
 
 <p className="subtitle">
-  Aplikacija za vaš ugostiteljski objekat.
+  Aplikacija za vaš ugostiteljski objekat
 </p>
 	
     <p className="subtitle">
-  Digitalizujte narudžbe i pregled poslovanja.
+  Digitalizujte narudžbe i pregled poslovanja
 </p>
  	   
 		   
@@ -327,17 +332,23 @@ useEffect(() => {
 
 
           <div className="formCard">
-            <h3>Prijava vašeg restorana</h3>
-            <p>Popunite podatke</p>
+            <h3>Prijavi se za testiranje</h3>
+            <p></p>
 
             {!sent ? (
               <>
+			  
+			  
+			  
 <input
   type="tel"
   placeholder="Broj telefona"
   
   value={phone}
-    autoComplete="off"
+     
+	  autoComplete="tel"
+	  inputMode="tel"
+ 
 
   onChange={(e) => {
     const value = e.target.value.replace(/[^\d+]/g, "");
@@ -345,7 +356,7 @@ useEffect(() => {
   }}
 />
 <textarea
-  placeholder="Dodatne informacije (nije obavezno)"
+  placeholder="Ime vašeg restorana (nije obavezno)"
   value={info}
     autoComplete="off"
 
@@ -414,21 +425,34 @@ useEffect(() => {
 
   <div className="aboutBlock">
     <p>
-      Konobari unose narudžbe, a kuhinja ih odmah prima i izdaje bez grešaka i čekanja.
+      Konobari unose narudžbe, a kuhinja ih odmah prima i kasnije izdaje bez grešaka i čekanja.
     </p>
+  
+  </div>
+  
+    <div className="aboutBlock">
+    
     <p>
       Svaka narudžba se automatski evidentira i povezuje sa računom i konobarom.
     </p>
   </div>
+  
 
   <div className="aboutBlock">
     <p>
       Vlasnici imaju potpunu kontrolu nad poslovanjem — pazar, smjene, mjesečni izvještaji i učinak osoblja.
     </p>
+   
+  </div>
+  
+   <div className="aboutBlock">
+ 
     <p>
       Sistem eliminiše ljudski faktor (greške) i daje jasnu sliku profita u svakom trenutku.
     </p>
   </div>
+  
+  
 
   <div className="aboutBlock">
     <p>
@@ -448,6 +472,9 @@ useEffect(() => {
 	  
  <div class="pricing-wrapper">
 
+
+<h2>Paketi</h2>
+
   <div class="pricing-card free">
     <h3>Besplatna probna verzija</h3>
     <p class="price">7 dana besplatno</p>
@@ -457,7 +484,7 @@ useEffect(() => {
   <div class="pricing-card monthly">
     <h3>Mjesečno</h3>
     <p class="price">20€ / mjesec</p>
-    <p class="desc">Potpuni pristup svim funkcijama+podrška 24/7</p>
+    <p class="desc">Potpuni pristup svim funkcijama+podrška</p>
   </div>
 
 <div className="pricing-card yearly highlight">
@@ -470,7 +497,7 @@ useEffect(() => {
   </p>
 
   <p className="desc">
-    Najbolja opcija — ušteda 40€/godišnje. Potpuni pristup svim funkcijama + podrška 24/7
+    Najbolja opcija — ušteda 40€/godišnje. Potpuni pristup svim funkcijama + podrška
   </p>
 </div>
 
@@ -555,7 +582,7 @@ useEffect(() => {
     </div>
 	
 	 <button className="panelBtn" onClick={handlePanel}>
-  📊 Otvori Panel
+  📊 Panel
 </button>
 
   </div>

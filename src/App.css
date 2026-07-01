@@ -31,6 +31,11 @@ body {
    PAGE / HERO
 ======================= */
 
+
+h2 {
+  text-align: center;
+}
+
 .page {
   width: 100%;
   margin: center;
@@ -947,7 +952,7 @@ body {
 .old-price {
   text-decoration: line-through;
   color: #999;
-  font-size: 16px;
+  font-size: 24px;
   margin-left: 8px;
 }
  
