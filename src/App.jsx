@@ -470,21 +470,21 @@ useEffect(() => {
 	  
 	  
 	  
- <div class="pricing-wrapper">
+ <div className="pricing-wrapper">
 
 
 <h2>Paketi</h2>
 
-  <div class="pricing-card free">
+  <div className="pricing-card free">
     <h3>Besplatna probna verzija</h3>
-    <p class="price">7 dana besplatno</p>
-    <p class="desc">Potpuni pristup svim funkcijama</p>
+    <p className="price">7 dana besplatno</p>
+    <p className="desc">Potpuni pristup svim funkcijama</p>
   </div>
 
-  <div class="pricing-card monthly">
+  <div className="pricing-card monthly">
     <h3>Mjesečno</h3>
-    <p class="price">20€ / mjesec</p>
-    <p class="desc">Potpuni pristup svim funkcijama+podrška</p>
+    <p className="price">20€ / mjesec</p>
+    <p className="desc">Potpuni pristup svim funkcijama+podrška</p>
   </div>
 
 <div className="pricing-card yearly highlight">
