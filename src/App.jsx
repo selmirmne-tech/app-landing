@@ -272,41 +272,147 @@ useEffect(() => {
   return (
     <div className="page">
 
+
+
+		{/* NAVBAR */}
+<nav className="navbar">
+  <div className="navbarInner">
+
+    <button
+      className="navbarLogo"
+      onClick={() =>
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        })
+      }
+    >
+      RESTO
+    </button>
+
+    <div className="navbarLinks">
+
+      <button onClick={() =>
+        document.getElementById("pocetna")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }>
+        Početna
+      </button>
+
+      <button onClick={() =>
+        document.getElementById("isprobaj")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }>
+        Isprobaj
+      </button>
+
+      <button onClick={() =>
+        document.getElementById("klijenti")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }>
+        Klijenti
+      </button>
+
+      <button onClick={() =>
+        document.getElementById("paketi")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }>
+        Paketi
+      </button>
+
+      <button onClick={() =>
+        document.getElementById("faq")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }>
+        FAQ
+      </button>
+
+      <button onClick={() =>
+        document.getElementById("kontakt")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }>
+        Kontakt
+      </button>
+
+    </div>
+
+    <button
+      className="navbarCta"
+      onClick={() =>
+        document.getElementById("isprobaj")?.scrollIntoView({
+          behavior: "smooth"
+        })
+      }
+    >
+      Isprobaj 7 dana
+    </button>
+
+  </div>
+</nav>
+
+
+
+		
+
       {/* HERO */}
-      <section className="hero">
+      <section id="pocetna" className="hero">
 
-        <header className="header">
 
-          <h1 className="title stampTitle">
-		   
-            <span className="gradient">{text}</span>
+<div className="heroVideo">
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+  >
+    <source src="/restaurant-hero.mp4" type="video/mp4" />
+  </video>
+</div>
 
-            {showStamp && (
-              <span className="freeStamp">BESPLATNO</span>
-            )}
-          </h1>
+<div className="heroOverlay"></div>
 
-          <p className="subtitleMain">
 		  
-		      
-            Ne gubite narudžbe ni tokom najvećih gužvi!
 
-          </p>
+<header className="header">
 
-<p className="subtitle">
-  Aplikacija za vaš ugostiteljski objekat
-</p>
-	
-    <p className="subtitle">
-  Digitalizujte narudžbe i pregled poslovanja
-</p>
- 	   
-		   
- 
-		   
- 
-		   
-        </header>
+  <h1 className="title stampTitle">
+    <span className="gradient">{text}</span>
+
+    {showStamp && (
+      <span className="freeStamp">
+        BESPLATNO
+      </span>
+    )}
+  </h1>
+
+  <h2 className="heroMainTitle">
+    Vaš restoran organizovan do posljednjeg detalja.
+  </h2>
+
+  <p className="heroDescription">
+    Narudžbine, stanje pića, QR meni i svakodnevno poslovanje
+    u jednom sistemu.
+  </p>
+
+  <p className="subtitleMain">
+    Ne gubite narudžbe ni tokom najvećih gužvi!
+  </p>
+
+  <p className="subtitle">
+    Aplikacija za vaš ugostiteljski objekat
+  </p>
+
+  <p className="subtitle">
+    Digitalizujte narudžbe i pregled poslovanja
+  </p>
+
+</header>
 
 
  
@@ -393,10 +499,15 @@ useEffect(() => {
       </section>
 
       {/* VIDEO */}
-      <section
-        ref={videoRef}
-        className={`section ${visibleVideo ? "show" : ""}`}
-      >
+
+
+<section
+  id="isprobaj"
+  ref={videoRef}
+  className={`section ${visibleVideo ? "show" : ""}`}
+>
+
+		
         <h2> Demonstracija </h2>
 <div className="phoneFrame">
   
@@ -420,9 +531,10 @@ useEffect(() => {
 
       {/* ABOUT */}
       <section
-        ref={aboutRef}
-        className={`section ${visibleAbout ? "show" : ""}`}
-      >
+  id="klijenti"
+  ref={aboutRef}
+  className={`section ${visibleAbout ? "show" : ""}`}
+>
         <h2>O aplikaciji</h2>
 
  
@@ -480,8 +592,7 @@ useEffect(() => {
 	  
 	  
 	  
- <div className="pricing-wrapper">
-
+ <div id="paketi" className="pricing-wrapper">
 
 <h2>Paketi</h2>
 
@@ -518,7 +629,8 @@ useEffect(() => {
 
 
 
- <section className="faqSection">
+ <section id="faq" className="faqSection">
+	 
   <h2>Često postavljena pitanja</h2>
 
   <div className="faqWrapper">
@@ -559,7 +671,7 @@ useEffect(() => {
 
  {/* FOOTER */}
  
-<footer className="footer">
+<footer id="kontakt" className="footer">
   <div className="footerContent">
 
     <div className="footerTop">
