@@ -2917,20 +2917,20 @@ TABLET
 .preposle-section {
 min-height: auto;
 
-```
+
 padding: 110px 25px;
-```
+
 
 }
 
 .preposle-comparison {
 max-width: 750px;
 
-```
+
 grid-template-columns: 1fr 50px 1fr;
 
 margin-top: 65px;
-```
+
 
 }
 
@@ -2942,9 +2942,9 @@ gap: 35px 20px;
 width: 64px;
 height: 64px;
 
-```
+
 font-size: 27px;
-```
+
 
 }
 
@@ -2963,9 +2963,9 @@ TELEFON
 .preposle-section {
 min-height: auto;
 
-```
+
 padding: 100px 20px;
-```
+
 
 }
 
@@ -2976,38 +2976,39 @@ font-size: 40px;
 .preposle-intro {
 font-size: 17px;
 
-```
+
 margin-top: 20px;
-```
+
 
 }
 
 .preposle-comparison {
 margin-top: 55px;
 
-```
+
 grid-template-columns: 1fr 35px 1fr;
-```
+
 
 }
 
 .preposle-title {
 margin-bottom: 28px;
 
-```
+
+
 font-size: 13px;
 
 letter-spacing: 2.5px;
-```
+
 
 }
 
 .preposle-items {
 grid-template-columns: 1fr;
 
-```
+
 gap: 32px;
-```
+
 
 }
 
@@ -3015,22 +3016,21 @@ gap: 32px;
 width: 58px;
 height: 58px;
 
-```
 margin-bottom: 10px;
 
 border-radius: 15px;
 
 font-size: 24px;
-```
+
 
 }
 
 .preposle-item span {
 font-size: 13px;
 
-```
+
 line-height: 1.35;
-```
+
 
 }
 
@@ -3042,11 +3042,11 @@ background: #d5d5d5;
 width: 8px;
 height: 8px;
 
-```
+
 box-shadow:
   0 0 0 5px #fff,
   0 0 0 6px #d5d5d5;
-```
+
 
 }
 
@@ -3073,18 +3073,18 @@ font-size: 16px;
 .preposle-comparison {
 grid-template-columns: 1fr 28px 1fr;
 
-```
+
 margin-top: 45px;
-```
+
 
 }
 
 .preposle-title {
 font-size: 12px;
 
-```
+
 letter-spacing: 2px;
-```
+
 
 }
 
@@ -3092,11 +3092,10 @@ letter-spacing: 2px;
 width: 52px;
 height: 52px;
 
-```
 font-size: 22px;
 
 border-radius: 14px;
-```
+
 
 }
 
