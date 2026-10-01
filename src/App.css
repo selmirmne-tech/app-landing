@@ -5283,52 +5283,130 @@ REDUCED MOTION
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 
   z-index: 9999;
 }
 
-.floating-socials a {
-  width: 44px;
-  height: 44px;
+
+/* =========================
+   ZAJEDNIČKI STIL
+   ========================= */
+
+.floating-socials .floating-social-button {
+  width: 56px;
+  height: 56px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 13px;
+  padding: 0;
 
-  background: #fff;
-  color: #111;
+  border: none;
+  border-radius: 16px;
 
-  border: 1px solid #e5e5e5;
+  color: #fff;
+
+  cursor: pointer;
 
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.08);
-
-  text-decoration: none;
+    0 8px 24px rgba(0, 0, 0, 0.18);
 
   transition:
     transform 0.2s ease,
-    background 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.floating-socials a:hover {
-  transform: translateX(-4px);
-
-  background: #111;
-  color: #fff;
-
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.floating-socials svg {
-  width: 21px;
-  height: 21px;
+.floating-socials .floating-social-button svg {
+  width: 30px;
+  height: 30px;
 
   fill: currentColor;
+}
+
+
+/* =========================
+   INSTAGRAM
+   ========================= */
+
+.floating-socials .floating-social-button:first-child {
+  background:
+    linear-gradient(
+      135deg,
+      #833ab4 0%,
+      #fd1d1d 50%,
+      #fcb045 100%
+    );
+
+  box-shadow:
+    0 8px 24px rgba(225, 48, 108, 0.28);
+}
+
+
+/* =========================
+   FACEBOOK
+   ========================= */
+
+.floating-socials .floating-social-button:last-child {
+  background: #1877f2;
+
+  box-shadow:
+    0 8px 24px rgba(24, 119, 242, 0.28);
+}
+
+
+/* =========================
+   HOVER
+   ========================= */
+
+.floating-socials .floating-social-button:hover {
+  transform: translateX(-4px) scale(1.05);
+}
+
+.floating-socials .floating-social-button:first-child:hover {
+  box-shadow:
+    0 12px 30px rgba(225, 48, 108, 0.38);
+}
+
+.floating-socials .floating-social-button:last-child:hover {
+  box-shadow:
+    0 12px 30px rgba(24, 119, 242, 0.38);
+}
+
+.floating-socials .floating-social-button:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================
+   TELEFON
+========================================= */
+
+@media (max-width: 700px) {
+
+  .floating-socials {
+    top: auto;
+    right: 15px;
+    bottom: 20px;
+
+    transform: none;
+
+    gap: 10px;
+  }
+
+  .floating-socials .floating-social-button {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+  }
+
+  .floating-socials .floating-social-button svg {
+    width: 28px;
+    height: 28px;
+  }
+
 }
 
 
@@ -5359,6 +5437,42 @@ REDUCED MOTION
     width: 19px;
     height: 19px;
   }
+  
+  
+  
+ 
+
+.social-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+
+  width: 100vw;
+  height: 100dvh;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  z-index: 2147483647 !important;
+
+  box-sizing: border-box;
+}
+
+.social-modal {
+  position: relative !important;
+
+  width: min(440px, calc(100vw - 40px));
+  max-height: calc(100dvh - 40px);
+
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
 
 }
 
@@ -5448,6 +5562,8 @@ REDUCED MOTION
    SOCIAL ICON
    ========================= */
 
+
+
 .social-modal-icon {
   width: 76px;
   height: 76px;
@@ -5460,9 +5576,12 @@ REDUCED MOTION
 
   border-radius: 22px;
 
+  color: #fff;
+
   transition:
     background 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .social-modal-icon svg {
@@ -5473,28 +5592,35 @@ REDUCED MOTION
 }
 
 
-/* INSTAGRAM */
+/* =========================
+   INSTAGRAM
+   ========================= */
 
 .social-modal-icon:has(svg path[d^="M7.75"]) {
-  color: #e1306c;
-
-  background: rgba(225, 48, 108, 0.10);
+  background:
+    linear-gradient(
+      135deg,
+      #833ab4 0%,
+      #fd1d1d 50%,
+      #fcb045 100%
+    );
 
   box-shadow:
-    0 10px 30px rgba(225, 48, 108, 0.15);
+    0 10px 30px rgba(225, 48, 108, 0.30);
 }
 
 
-/* FACEBOOK */
+/* =========================
+   FACEBOOK
+   ========================= */
 
 .social-modal-icon:has(svg path[d^="M14 8"]) {
-  color: #1877f2;
-
-  background: rgba(24, 119, 242, 0.10);
+  background: #1877f2;
 
   box-shadow:
-    0 10px 30px rgba(24, 119, 242, 0.15);
+    0 10px 30px rgba(24, 119, 242, 0.30);
 }
+
 
 
 /* =========================
@@ -5687,4 +5813,79 @@ REDUCED MOTION
   .social-modal-actions button {
     width: 100%;
   }
+  
+    .social-modal-overlay {
+    padding: 16px !important;
+    height: 100dvh;
+  }
+
+  .social-modal {
+    width: 100%;
+    max-width: 440px;
+    max-height: calc(100dvh - 32px);
+
+    padding: 38px 22px 24px;
+    border-radius: 20px;
+  }
+
+}
+
+
+.contact-socials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.contact-socials button {
+  width: 56px;
+  height: 56px;
+
+  flex: 0 0 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+
+  color: #fff;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact-socials button svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+.contact-socials button.instagram {
+  background: linear-gradient(
+    135deg,
+    #833ab4 0%,
+    #fd1d1d 50%,
+    #fcb045 100%
+  );
+
+  box-shadow: 0 8px 24px rgba(225, 48, 108, 0.28);
+}
+
+.contact-socials button.facebook {
+  background: #1877f2;
+
+  box-shadow: 0 8px 24px rgba(24, 119, 242, 0.28);
+}
+
+.contact-socials button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.contact-socials button:active {
+  transform: scale(0.96);
 }
