@@ -24,7 +24,7 @@ import logo from "./assets/LOGO_FINAL.webp";
 
 function App() {
   const [activeSection, setActiveSection] = useState("pocetna");
-
+const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 
 /* 
@@ -494,44 +494,83 @@ const faqs = [
       {/* ================= NAVBAR ================= */}
 
     
- <header className="navbar">
-        <div className="navbar-inner">
-
-          <a href="#pocetna" className="logo-link">
-            <img src={logo} alt="Vaš restoran" className="logo" />
-          </a>
-
-    
-	
-   
-   <nav className="nav-links">
-  {sections.map((section) => (
+<header className="navbar">
+  <div className="navbar-inner">
     <a
-      key={section.id}
-      href={`#${section.id}`}
-      onClick={(e) => {
-        e.preventDefault();
-        scrollToSection(section.id);
-      }}
-      className={
-        activeSection === section.id
-          ? "nav-link active"
-          : "nav-link"
-      }
+      href="#pocetna"
+      className="logo-link"
+      onClick={() => setIsMobileMenuOpen(false)}
     >
-      {section.label}
+      <img src={logo} alt="Vaš restoran" className="logo" />
     </a>
-  ))}
-</nav>
- 
-   
-   
-   
-	
-	
 
-        </div>
-      </header>
+    {/* DESKTOP NAVIGACIJA */}
+    <nav className="nav-links">
+      {sections.map((section) => (
+        <a
+          key={section.id}
+          href={`#${section.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection(section.id);
+          }}
+          className={
+            activeSection === section.id
+              ? "nav-link active"
+              : "nav-link"
+          }
+        >
+          {section.label}
+        </a>
+      ))}
+    </nav>
+
+    {/* HAMBURGER */}
+    <button
+      type="button"
+      className={`mobile-menu-button ${
+        isMobileMenuOpen ? "open" : ""
+      }`}
+      onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+      aria-label={isMobileMenuOpen ? "Zatvori meni" : "Otvori meni"}
+      aria-expanded={isMobileMenuOpen}
+      aria-controls="mobile-navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  {/* MOBILNI MENI */}
+  <div
+    id="mobile-navigation"
+    className={`mobile-menu ${
+      isMobileMenuOpen ? "open" : ""
+    }`}
+  >
+    <nav className="mobile-nav-links">
+      {sections.map((section) => (
+        <a
+          key={section.id}
+          href={`#${section.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection(section.id);
+            setIsMobileMenuOpen(false);
+          }}
+          className={
+            activeSection === section.id
+              ? "mobile-nav-link active"
+              : "mobile-nav-link"
+          }
+        >
+          {section.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
 
 
 

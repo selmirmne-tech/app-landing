@@ -79,9 +79,7 @@ section {
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+
  /* =========================
    NAVBAR
 ========================= */
@@ -495,32 +493,14 @@ section {
 
 @media (max-width: 900px) {
 
-  .navbar-inner {
-    padding: 0 25px;
-  }
 
-  .logo {
-    width: 60px;
-    height: 60px;
-  }
 
-  .nav-links {
-    margin-left: 25px;
-  }
 
-  .nav-link {
-    padding: 8px 10px;
-    font-size: 15px;
-  }
 
-  .nav-link.active::before {
-    left: 10px;
-    right: 10px;
-  }
 
-  .nav-link:not(:last-child)::after {
-    right: -1px;
-  }
+  
+
+ 
 
 
   /* HERO TABLET */
@@ -616,93 +596,271 @@ section {
   }
 }  
 
-/* =========================
-   NAVBAR - TELEFON
+ 
+ 
+ /* =========================
+   MOBILE / TABLET NAVBAR
 ========================= */
 
-@media (max-width: 700px) {
+/* Na desktopu hamburger i mobilni meni ne postoje */
+.mobile-menu-button,
+.mobile-menu {
+  display: none;
+}
+
+
+@media (max-width: 900px) {
+
+  /* =========================
+     NAVBAR
+  ========================= */
 
   .navbar {
-    height: auto;
+    height: 70px;
     min-height: 70px;
   }
 
   .navbar-inner {
+    width: 100%;
+    height: 70px;
     min-height: 70px;
-    height: auto;
 
-    padding: 8px 12px;
+    padding: 8px 16px;
 
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+
+    flex-wrap: nowrap;
   }
 
 
-  /* LOGO */
+  /* =========================
+     LOGO
+  ========================= */
 
   .logo-link {
     flex-shrink: 0;
 
     display: flex;
     align-items: center;
-
-    margin: 0;
   }
 
   .logo {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
   }
 
 
-  /* LINKOVI */
+  /* =========================
+     SAKRIJ DESKTOP NAVIGACIJU
+  ========================= */
 
   .nav-links {
-  flex: 1;
-  min-width: 0;
-  margin-left: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  column-gap: 0;
-  row-gap: 0;
-}
+    display: none !important;
+  }
 
 
-  .nav-link {
+  /* =========================
+     HAMBURGER
+  ========================= */
+
+  .mobile-menu-button {
     position: relative;
 
-    padding: 7px 9px;
+    width: 46px;
+    height: 46px;
 
-    font-size: clamp(13px, 3.5vw, 16px);
+    padding: 0;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    cursor: pointer;
+
+    z-index: 1102;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+
+  .mobile-menu-button span {
+    display: block;
+
+    width: 25px;
+    height: 2px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+
+  /* HAMBURGER → X */
+
+  .mobile-menu-button.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .mobile-menu-button.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-button.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+
+  /* =========================
+     MOBILE MENU
+  ========================= */
+
+  .mobile-menu {
+    position: fixed;
+
+    top: 70px;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+
+    display: block;
+
+    background: rgba(0, 0, 0, 0.98);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-12px);
+
+    pointer-events: none;
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+
+    z-index: 1100;
+  }
+
+
+  /* OTVOREN MENI */
+
+  .mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+  }
+
+
+  /* =========================
+     MOBILE LINKOVI
+  ========================= */
+
+  .mobile-nav-links {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 12px 20px 20px;
+  }
+
+
+  .mobile-nav-link {
+    position: relative;
+
+    width: 100%;
+
+    padding: 17px 10px;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 18px;
     font-weight: 600;
 
-    line-height: 1.2;
+    text-align: left;
 
-    white-space: nowrap;
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      padding-left 0.2s ease;
+
+    box-sizing: border-box;
   }
 
 
-  /* AKTIVNI LINK */
-
-  .nav-link.active::before {
-    left: 9px;
-    right: 9px;
-
-    bottom: 2px;
+  .mobile-nav-link:last-child {
+    border-bottom: none;
   }
 
 
-  /* VERTIKALNA LINIJA */
+  .mobile-nav-link:hover {
+    color: white;
+  }
 
-  .nav-link:not(:last-child)::after {
-    right: 0;
+
+  /* AKTIVNA SEKCIJA */
+
+  .mobile-nav-link.active {
+    color: white;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-radius: 8px;
+
+    padding-left: 16px;
+  }
+
+
+  .mobile-nav-link.active::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 3px;
+    height: 24px;
+
+    transform: translateY(-50%);
+
+    background: white;
+
+    border-radius: 10px;
   }
 }
-
+ 
+ 
+ 
 
   /* HERO */
 
@@ -715,12 +873,8 @@ section {
   height: auto;
   min-height: 100svh;
 
-  padding-top: 105px;
+  padding-top: 70px;
   padding-bottom: 70px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .hero-content {
@@ -811,16 +965,7 @@ section {
 
 @media (max-width: 400px) {
 
-  .nav-link {
-    padding: 4px 6px;
-
-    font-size: 11px;
-  }
-
-  .nav-link.active::before {
-    left: 6px;
-    right: 6px;
-  }
+ 
 
   .hero-content h1 {
     font-size: 32px;
@@ -828,6 +973,10 @@ section {
 
   .hero-content p {
     font-size: 16px;
+  }
+  
+  .hero {
+    padding-top: 64px;
   }
 }
 
@@ -5889,3 +6038,5 @@ REDUCED MOTION
 .contact-socials button:active {
   transform: scale(0.96);
 }
+
+
