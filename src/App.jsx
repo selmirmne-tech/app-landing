@@ -503,6 +503,11 @@ const faqs = [
     >
       <img src={logo} alt="Vaš restoran" className="logo" />
     </a>
+	
+	<div className="mobile-brand-name">
+  Vaš restoran
+</div>
+	
 
     {/* DESKTOP NAVIGACIJA */}
     <nav className="nav-links">

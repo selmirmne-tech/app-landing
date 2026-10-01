@@ -104,6 +104,12 @@ section {
 }
 
 
+.mobile-brand-name {
+  display: none;
+}
+
+
+
 /* GLAVNI KONTEJNER */
 
 .navbar-inner {
@@ -504,6 +510,9 @@ section {
 
 
   /* HERO TABLET */
+  
+  
+  
 
   .hero {
     min-height: 700px;
@@ -615,6 +624,12 @@ section {
      NAVBAR
   ========================= */
 
+
+
+
+
+
+
   .navbar {
     height: 70px;
     min-height: 70px;
@@ -633,6 +648,24 @@ section {
 
     flex-wrap: nowrap;
   }
+  
+  
+  .mobile-brand-name {
+  display: block;
+
+  flex: 1;
+
+  text-align: center;
+
+  margin: 0 15px;
+
+  color: white;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
 
 
   /* =========================
