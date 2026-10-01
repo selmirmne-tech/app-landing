@@ -4,6 +4,13 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ref, push, set } from "firebase/database";
 import { db } from "./firebase";
+import slika1 from "./assets/clients/slika1.webp";
+import slika2 from "./assets/clients/slika2.webp";
+import slika3 from "./assets/clients/slika3.webp";
+import slika4 from "./assets/clients/slika4.webp";
+import slika5 from "./assets/clients/slika5.webp";
+import slika6 from "./assets/clients/slika6.webp";
+import preposleImage from "./assets/prePosle.webp";
 import {
   FaBolt,
   FaShieldAlt,
@@ -22,16 +29,14 @@ function App() {
 
 const sections = [
   { id: "pocetna", label: "Početna" },
-  { id: "klijenti", label: "Klijenti" },
   { id: "problem", label: "Problem" },
   { id: "rjesenje", label: "Rješenje" },
   { id: "funkcije", label: "Funkcije" },
   { id: "pre/posle", label: "Pre/Posle" },
   { id: "kako-zapoceti", label: "Kako-započeti" },
-  { id: "social-proof", label: "Social-Proof" },
   { id: "paketi", label: "Paketi" },
+  { id: "klijenti", label: "Klijenti" },
   { id: "faq", label: "FAQ" },
-  { id: "isprobaj", label: "Isprobaj" },
   { id: "kontakt", label: "Kontakt" },
 ];
 
@@ -44,6 +49,10 @@ const auth = getAuth();
 const [phone, setPhone] = useState("");
 const [info, setInfo] = useState("");
 const [sent, setSent] = useState(false);
+const [sent1, setSent1] = useState(false);
+
+const [isTrialOpen, setIsTrialOpen] = useState(false);
+
 
 const [openFaq, setOpenFaq] = useState(null);
 
@@ -51,6 +60,9 @@ const [toast, setToast] = useState(null);
 const [toastType, setToastType] = useState("error");
 const toastTimeoutRef = useRef(null);
 
+
+const [activeTestimonial, setActiveTestimonial] = useState(0);
+const testimonialTrackRef = useRef(null);
 
 const scrollToSection = (id) => {
   const target = document.getElementById(id);
@@ -94,7 +106,57 @@ const scrollToSection = (id) => {
  
  
  
- 
+const openTrialDialog = () => {
+  setSent1(false);
+  setIsTrialOpen(true);
+  document.body.style.overflow = "hidden";
+
+  window.history.pushState({ trialModal: true }, "");
+};
+
+const closeTrialDialog = (fromBack = false) => {
+  setIsTrialOpen(false);
+  setSent1(false);
+  document.body.style.overflow = "";
+
+  if (!fromBack && window.history.state?.trialModal) {
+    window.history.back();
+  }
+};
+
+useEffect(() => {
+  const handlePopState = () => {
+    if (isTrialOpen) {
+      closeTrialDialog(true);
+    }
+  };
+
+  window.addEventListener("popstate", handlePopState);
+
+  return () => {
+    window.removeEventListener("popstate", handlePopState);
+  };
+}, [isTrialOpen]);
+
+
+
+
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      closeTrialDialog();
+    }
+  };
+
+  if (isTrialOpen) {
+    document.addEventListener("keydown", handleKeyDown);
+  }
+
+  return () => {
+    document.removeEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "";
+  };
+}, [isTrialOpen]);
  
 
 const handlePanel = () => {
@@ -107,23 +169,21 @@ const handlePanel = () => {
     }
   };
 
-const handleSubmit = async () => {
 
+
+const handleSubmit = async () => {
   if (!phone.trim()) {
-    showToast("Unesite broj telefona", "error");
+    showToast("Unesite broj telefona.", "error");
     return;
   }
 
-  if (phone.trim().length < 4) {
-    showToast("Broj nije ispravan.", "error");
+  if (phone.trim().replace(/\D/g, "").length < 4) {
+    showToast("Unesite ispravan broj telefona.", "error");
     return;
   }
 
   try {
-
-    const newRequestRef = push(
-      ref(db, "PRIJAVE")
-    );
+    const newRequestRef = push(ref(db, "PRIJAVE"));
 
     await set(newRequestRef, {
       phone: phone.trim(),
@@ -132,33 +192,71 @@ const handleSubmit = async () => {
     });
 
     if (window.fbq) {
-      console.log("META LEAD POSLAT");
-
       window.fbq("track", "Lead");
-    } else {
-      console.log("META PIXEL NIJE UCITAN");
     }
-
-    setSent(true);
 
     setPhone("");
     setInfo("");
 
+    // Prikaži uspješnu poruku
+    setSent(true);
+
+    // Nakon 5 sekundi vrati formu
     setTimeout(() => {
       setSent(false);
     }, 5000);
 
   } catch (error) {
-
     console.error(error);
 
     showToast(
-      "Greška pri slanju prijave",
+      "Došlo je do greške. Pokušajte ponovo.",
       "error"
     );
   }
 };
 
+
+
+const handleSubmit1 = async () => {
+  if (!phone.trim()) {
+    showToast("Unesite broj telefona.", "error");
+    return;
+  }
+
+  if (phone.trim().replace(/\D/g, "").length < 4) {
+    showToast("Unesite ispravan broj telefona.", "error");
+    return;
+  }
+
+  try {
+    const newRequestRef = push(ref(db, "PRIJAVE"));
+
+    await set(newRequestRef, {
+      phone: phone.trim(),
+      info: info.trim(),
+      timestamp: Date.now(),
+    });
+
+    if (window.fbq) {
+      window.fbq("track", "Lead");
+    }
+
+    setPhone("");
+    setInfo("");
+
+    // Prikaži success ekran u modalu
+    setSent1(true);
+
+  } catch (error) {
+    console.error(error);
+
+    showToast(
+      "Došlo je do greške. Pokušajte ponovo.",
+      "error"
+    );
+  }
+};
 
 const showToast = (message, type = "error") => {
   setToast(message);
@@ -172,6 +270,52 @@ const showToast = (message, type = "error") => {
     setToast(null);
   }, 3000);
 };
+
+
+useEffect(() => {
+  const track = testimonialTrackRef.current;
+
+  if (!track) return;
+
+  const updateActiveTestimonial = () => {
+    const cards = track.querySelectorAll(".testimonial-card");
+
+    if (!cards.length) return;
+
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+
+      const distance = Math.abs(cardCenter - trackCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setActiveTestimonial(closestIndex);
+  };
+
+  track.addEventListener("scroll", updateActiveTestimonial, {
+    passive: true,
+  });
+
+  window.addEventListener("resize", updateActiveTestimonial);
+
+  updateActiveTestimonial();
+
+  return () => {
+    track.removeEventListener("scroll", updateActiveTestimonial);
+    window.removeEventListener("resize", updateActiveTestimonial);
+  };
+}, []);
  
  
  
@@ -334,9 +478,74 @@ const faqs = [
       </header>
 
 
+
+
+
+
+
+
+
+
+
+<div className="floating-socials">
+
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com/vasrestoran/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.25a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25Z"
+      />
+    </svg>
+  </a>
+
+  {/* Facebook */}
+  <a
+    href="https://www.facebook.com/profile.php?id=61594371663467"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M14 8h3V4h-3c-2.761 0-5 2.239-5 5v3H6v4h3v6h4v-6h3l1-4h-4V9c0-.552.448-1 1-1Z"
+      />
+    </svg>
+  </a>
+
+  
+
+</div>
+
       {/* ================= HERO ================= */}
 
       <section id="pocetna" className="hero">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {/* Video u pozadini */}
         <video
@@ -365,21 +574,16 @@ const faqs = [
             poslovanje u jednom sistemu
           </p>
 
-   <div className="hero-buttons">
+<div className="hero-buttons">
 
   <button
     className="hero-button"
-    onClick={() => scrollToSection("isprobaj")}
+    onClick={openTrialDialog}
   >
-    Isprobaj odmah
+    Isprobaj besplatno
   </button>
 
-  <button
-    className="hero-button"
-    onClick={() => scrollToSection("isprobaj")}
-  >
-    Isprobaj odmah
-  </button>
+ 
 
 </div>
 
@@ -396,28 +600,9 @@ const faqs = [
 	  
 	  
 	  
-	  
-      {/* ================= KLIJENTI ================= */}
+	 
 
-      <section id="klijenti" className="content-section dark-section">
-        <div className="section-container">
-
-          <span className="section-label">
-            KLIJENTI
-          </span>
-
-          <h2>
-            Restorani koji nam vjeruju
-          </h2>
-
-          <p>
-            Pogledajte restorane i ugostiteljske objekte
-            koji koriste naš sistem za svakodnevno poslovanje.
-          </p>
-
-        </div>
-      </section>
-	  
+ 
 	  
 	  
 	  
@@ -431,7 +616,7 @@ const faqs = [
   <div className="section-container">
 
     <span className="section-label">
-      PROBLEM
+      {/*Ovdje ide teekst "PROBLEM" */}
     </span>
 
     <h2>
@@ -467,24 +652,14 @@ const faqs = [
   <div className="section-container">
 
     <span className="section-label">
-      REŠENJE
+      {/*Ovdje ide teekst "RJESENJE" */}
     </span>
 
     <h2>
       Savršeno usklađen sistem koji spaja cio restoran!
     </h2>
 
-    <p>
-      Vaš Restoran povezuje konobare, kuhinju i vlasnika u jednostavan tok rada, tako da se svaka narudžbina kreće kroz restoran bez nepotrebnog prepisivanja, traženja i gubljenja vremena.
-    </p>
-
-    <p>
-      Konobar unosi porudžbine za sekund, kuhinja ih dobija odmah a vlasnik može da sedi na plaži i isprati svaki detalj restorana.
-    </p>
-
-    <p>
-      Sa ovim softverom restoran postaje organizovan bolje nego bilo koja pljačka banke na svetu.
-    </p>
+ 
 	
 
 
@@ -653,6 +828,28 @@ const faqs = [
 
     </div>
 
+
+<button
+  className="start-button"
+  onClick={openTrialDialog}
+>
+  Isprobaj odmah
+</button>
+
+    <p>
+      Vaš Restoran povezuje konobare, kuhinju i vlasnika u jednostavan tok rada, tako da se svaka narudžbina kreće kroz restoran bez nepotrebnog prepisivanja, traženja i gubljenja vremena.
+    </p>
+
+    <p>
+      Konobar unosi porudžbine za sekund, kuhinja ih dobija odmah a vlasnik može da sedi na plaži i isprati svaki detalj restorana.
+    </p>
+
+    <p>
+      Sa ovim softverom restoran postaje organizovan bolje nego bilo koja pljačka banke na svetu.
+    </p>
+
+
+
   </div>
 
 </section>
@@ -750,99 +947,29 @@ const faqs = [
 <section id="pre/posle" className="content-section preposle-section">
   <div className="section-container preposle-container">
 
+    <span className="section-label">
+      {/* PRIJE / POSLIJE */}
+    </span>
 
-<span className="section-label">
-  PRIJE / POSLIJE
-</span>
+    <h2>
+      Od papira do digitalnog poslovanja
+    </h2>
 
-<h2>
-  Od papira do digitalnog poslovanja
-</h2>
+    <p className="preposle-intro">
+      Pogledajte kako izgleda svakodnevni rad restorana prije i nakon
+      uvođenja našeg sistema.
+    </p>
 
-<p className="preposle-intro">
-  Pogledajte kako izgleda svakodnevni rad restorana prije i nakon
-  uvođenja našeg sistema.
-</p>
-
-<div className="preposle-comparison">
-
-  {/* LIJEVA STRANA — PRE */}
-  <div className="preposle-side pre-side">
-
-    <div className="preposle-title">
-      PRIJE
+    <div className="preposle-image-wrapper">
+      <img
+        src={preposleImage}
+        alt="Prikaz poslovanja restorana prije i nakon uvođenja sistema"
+        className="preposle-image"
+      />
     </div>
-
-    <div className="preposle-items">
-
-      <div className="preposle-item">
-        <div className="preposle-icon">📝</div>
-        <span>Blokčić</span>
-      </div>
-
-      <div className="preposle-item">
-        <div className="preposle-icon">📄</div>
-        <span>Papirne narudžbe</span>
-      </div>
-
-      <div className="preposle-item">
-        <div className="preposle-icon">📞</div>
-        <span>Dovikivanje kuhinji</span>
-      </div>
-
-      <div className="preposle-item">
-        <div className="preposle-icon">🧮</div>
-        <span>Ručno sabiranje</span>
-      </div>
-
-    </div>
-  </div>
-
-
-  {/* SREDINA */}
-  <div className="preposle-divider">
-    <span></span>
-  </div>
-
-
-  {/* DESNA STRANA — SADA */}
-  <div className="preposle-side now-side">
-
-    <div className="preposle-title">
-      SADA
-    </div>
-
-    <div className="preposle-items">
-
-      <div className="preposle-item">
-        <div className="preposle-icon">📱</div>
-        <span>Telefon</span>
-      </div>
-
-      <div className="preposle-item">
-        <div className="preposle-icon">⚡</div>
-        <span>Trenutna narudžba</span>
-      </div>
-
-      <div className="preposle-item">
-        <div className="preposle-icon">👨‍🍳</div>
-        <span>Direktno kuhinji</span>
-      </div>
-
-      <div className="preposle-item">
-        <div className="preposle-icon">📊</div>
-        <span>Automatski izvještaji</span>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
 
   </div>
 </section>
-
 
 
 
@@ -854,7 +981,7 @@ const faqs = [
 
 
 <span className="section-label">
-  KAKO ZAPOČETI
+  {/*Ovdje ide teekst "KAKO_ZAPOCETI" */}
 </span>
 
 <h2>
@@ -877,7 +1004,7 @@ const faqs = [
   </div>
 
   <div className="start-arrow">
-    <span>→</span>
+    <span>↓</span>
   </div>
 
   <div className="start-step">
@@ -889,7 +1016,7 @@ const faqs = [
   </div>
 
   <div className="start-arrow">
-    <span>→</span>
+    <span>↓</span>
   </div>
 
   <div className="start-step">
@@ -902,9 +1029,13 @@ const faqs = [
 
 </div>
 
+ <div className="start-arrow">
+    <span>↓</span>
+  </div>
+
 <button
   className="start-button"
-  onClick={() => scrollToSection("isprobaj")}
+  onClick={openTrialDialog}
 >
   Isprobaj odmah
 </button>
@@ -920,169 +1051,6 @@ const faqs = [
 
 
 
-{/* social-proof */}
-<section id="social-proof" className="content-section social-proof-section">
-  <div className="section-container social-proof-container">
-
-    <span className="section-label">
-      SOCIAL PROOF
-    </span>
-
-    <h2>
-      Ugostitelji koji su prešli na jednostavniji način rada.
-    </h2>
-
-    <p className="social-proof-intro">
-      Pogledajte iskustva ugostitelja koji koriste sistem u svakodnevnom radu.
-    </p>
-
-    <div className="testimonial-slider">
-
-      <button
-        className="testimonial-arrow testimonial-arrow-left"
-        aria-label="Prethodni utisak"
-        onClick={() => {
-          document
-            .querySelector(".testimonial-track")
-            ?.scrollBy({
-              left: -380,
-              behavior: "smooth"
-            });
-        }}
-      >
-        ←
-      </button>
-
-      <div className="testimonial-track">
-
-        {/* TESTIMONIJAL 1 */}
-        <article className="testimonial-card">
-
-          <div className="testimonial-stars">
-            ★★★★★
-          </div>
-
-          <p className="testimonial-text">
-            "Od kada koristimo sistem, narudžbe su mnogo preglednije
-            i kuhinja odmah zna šta treba da pripremi."
-          </p>
-
-          <div className="testimonial-author">
-            <div className="testimonial-avatar">
-              A
-            </div>
-
-            <div>
-              <strong>Marko</strong>
-              <span>Vlasnik restorana</span>
-            </div>
-          </div>
-
-        </article>
-
-        {/* TESTIMONIJAL 2 */}
-        <article className="testimonial-card">
-
-          <div className="testimonial-stars">
-            ★★★★★
-          </div>
-
-          <p className="testimonial-text">
-            "Konobari sada sve unose direktno preko telefona,
-            a kuhinja dobija narudžbu bez dodatnog dogovaranja."
-          </p>
-
-          <div className="testimonial-author">
-            <div className="testimonial-avatar">
-              N
-            </div>
-
-            <div>
-              <strong>Nikola</strong>
-              <span>Menadžer lokala</span>
-            </div>
-          </div>
-
-        </article>
-
-        {/* TESTIMONIJAL 3 */}
-        <article className="testimonial-card">
-
-          <div className="testimonial-stars">
-            ★★★★★
-          </div>
-
-          <p className="testimonial-text">
-            "Najviše nam znači što imamo bolji pregled narudžbi,
-            smjena i prometa na jednom mjestu."
-          </p>
-
-          <div className="testimonial-author">
-            <div className="testimonial-avatar">
-              S
-            </div>
-
-            <div>
-              <strong>Stefan</strong>
-              <span>Vlasnik kafića</span>
-            </div>
-          </div>
-
-        </article>
-
-        {/* TESTIMONIJAL 4 */}
-        <article className="testimonial-card">
-
-          <div className="testimonial-stars">
-            ★★★★★
-          </div>
-
-          <p className="testimonial-text">
-            "Jednostavno za korišćenje i mnogo praktičnije od
-            papirnih narudžbi."
-          </p>
-
-          <div className="testimonial-author">
-            <div className="testimonial-avatar">
-              M
-            </div>
-
-            <div>
-              <strong>Miloš</strong>
-              <span>Ugostitelj</span>
-            </div>
-          </div>
-
-        </article>
-
-      </div>
-
-      <button
-        className="testimonial-arrow testimonial-arrow-right"
-        aria-label="Sljedeći utisak"
-        onClick={() => {
-          document
-            .querySelector(".testimonial-track")
-            ?.scrollBy({
-              left: 380,
-              behavior: "smooth"
-            });
-        }}
-      >
-        →
-      </button>
-
-    </div>
-
-    <div className="testimonial-dots">
-      <span className="testimonial-dot active"></span>
-      <span className="testimonial-dot"></span>
-      <span className="testimonial-dot"></span>
-      <span className="testimonial-dot"></span>
-    </div>
-
-  </div>
-</section>
 
 
 
@@ -1093,16 +1061,16 @@ const faqs = [
 
 
 
+ 
+ 
+{/* ================= PAKETI ================= */}
 
-
-      {/* ================= PAKETI ================= */}
-
-     <section id="paketi" className="pricing-section">
+<section id="paketi" className="pricing-section">
 
   <div className="pricing-wrapper">
 
     <span className="pricing-label">
-      PAKETI
+       
     </span>
 
     <h2>
@@ -1116,20 +1084,32 @@ const faqs = [
 
     <div className="pricing-cards">
 
-      {/* BESPLATNA PROBNA VERZIJA */}
+      {/* 7 DANA */}
 
-      <div className="pricing-card free">
+      <div
+        className="pricing-card free"
+        onClick={openTrialDialog}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            openTrialDialog();
+          }
+        }}
+      >
 
         <h3>
-          Besplatna probna verzija
+          7 dana
         </h3>
 
         <p className="price">
-          7 dana besplatno
+          0€
         </p>
 
         <p className="desc">
-          Potpuni pristup svim funkcijama
+          Uključeno: potpuni pristup svim funkcijama
+          tokom 7 dana, bez obaveze plaćanja i mogućnost
+          da isprobate sistem prije odabira paketa.
         </p>
 
       </div>
@@ -1137,7 +1117,17 @@ const faqs = [
 
       {/* MJESEČNO */}
 
-      <div className="pricing-card monthly">
+      <div
+        className="pricing-card monthly"
+        onClick={openTrialDialog}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            openTrialDialog();
+          }
+        }}
+      >
 
         <h3>
           Mjesečno
@@ -1148,7 +1138,9 @@ const faqs = [
         </p>
 
         <p className="desc">
-          Potpuni pristup svim funkcijama + podrška
+          Uključeno: potpuni pristup svim funkcijama,
+          korištenje sistema bez ograničenja i podrška
+          tokom korištenja usluge.
         </p>
 
       </div>
@@ -1156,7 +1148,17 @@ const faqs = [
 
       {/* GODIŠNJE */}
 
-      <div className="pricing-card yearly">
+      <div
+        className="pricing-card yearly"
+        onClick={openTrialDialog}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            openTrialDialog();
+          }
+        }}
+      >
 
         <div className="recommendedBadge">
           PREPORUČENO
@@ -1171,8 +1173,10 @@ const faqs = [
         </p>
 
         <p className="desc">
-          Ušteda 69€ godišnje. Potpuni pristup
-          svim funkcijama + podrška
+          Uključeno: potpuni pristup svim funkcijama,
+          korištenje sistema bez ograničenja i podrška
+          tokom cijele godine. Uštedite 69€ u odnosu
+          na mjesečnu pretplatu.
         </p>
 
       </div>
@@ -1182,6 +1186,290 @@ const faqs = [
   </div>
 
 </section>
+ 
+
+
+
+
+
+{/* ================= SOCIAL PROOF ================= */}
+
+<section id="klijenti" className="content-section social-proof-section">
+  <div className="section-container social-proof-container">
+
+    <span className="section-label">
+      {/* SOCIA PROOF */}
+    </span>
+
+    <h2>
+      Ugostitelji koji su prešli na jednostavniji način rada.
+    </h2>
+
+    <p className="social-proof-intro">
+      Pogledajte restorane i ugostiteljske objekte koji koriste naš sistem
+      za svakodnevno poslovanje.
+    </p>
+
+
+    {/* ================= LOGOI KLIJENATA ================= */}
+
+    <div className="clients-logos">
+
+      <div className="client-logo">
+        <img src={slika1} alt="Klijent 1" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika2} alt="Klijent 2" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika3} alt="Klijent 3" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika4} alt="Klijent 4" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika5} alt="Klijent 5" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika6} alt="Klijent 6" />
+      </div>
+
+    </div>
+
+
+    {/* ================= RECENZIJE ================= */}
+
+    <div className="testimonial-slider">
+
+      <button
+        className="testimonial-arrow testimonial-arrow-left"
+        aria-label="Prethodni utisak"
+        onClick={() => {
+          const cards =
+            testimonialTrackRef.current?.querySelectorAll(
+              ".testimonial-card"
+            );
+
+          if (!cards?.length) return;
+
+          const nextIndex = Math.max(activeTestimonial - 1, 0);
+
+          cards[nextIndex]?.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }}
+      >
+        ←
+      </button>
+
+
+      <div
+        className="testimonial-track"
+        ref={testimonialTrackRef}
+      >
+
+        {/* TESTIMONIJAL 1 */}
+        <article className="testimonial-card">
+
+          <div className="testimonial-stars">
+            ★★★★★
+          </div>
+
+
+
+          <p className="testimonial-text">
+            "Jednostavno za korišćenje i mnogo praktičnije od
+            papirnih narudžbi."
+          </p>
+
+           
+
+          <div className="testimonial-author">
+
+            <div className="testimonial-avatar">
+              A
+            </div>
+
+            <div>
+              <strong>Marko</strong>
+              <span>Vlasnik restorana</span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        {/* TESTIMONIJAL 2 */}
+        <article className="testimonial-card">
+
+          <div className="testimonial-stars">
+            ★★★★★
+          </div>
+
+          <p className="testimonial-text">
+            "Konobari sada sve unose direktno preko telefona,
+            a kuhinja dobija narudžbu bez dodatnog dogovaranja."
+          </p>
+
+          <div className="testimonial-author">
+
+            <div className="testimonial-avatar">
+              N
+            </div>
+
+            <div>
+              <strong>Nikola</strong>
+              <span>Menadžer lokala</span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        {/* TESTIMONIJAL 3 */}
+        <article className="testimonial-card">
+
+          <div className="testimonial-stars">
+            ★★★★★
+          </div>
+
+          <p className="testimonial-text">
+            "Najviše nam znači što imamo bolji pregled narudžbi,
+            smjena i prometa na jednom mjestu."
+          </p>
+
+          <div className="testimonial-author">
+
+            <div className="testimonial-avatar">
+              S
+            </div>
+
+            <div>
+              <strong>Stefan</strong>
+              <span>Vlasnik kafića</span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        {/* TESTIMONIJAL 4 */}
+        <article className="testimonial-card">
+
+          <div className="testimonial-stars">
+            ★★★★★
+          </div>
+
+          <p className="testimonial-text">
+            "Od kada koristimo sistem, narudžbe su mnogo preglednije
+            i kuhinja odmah zna šta treba da pripremi."
+          </p>
+
+          <div className="testimonial-author">
+
+            <div className="testimonial-avatar">
+              M
+            </div>
+
+            <div>
+              <strong>Miloš</strong>
+              <span>Ugostitelj</span>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <button
+        className="testimonial-arrow testimonial-arrow-right"
+        aria-label="Sljedeći utisak"
+        onClick={() => {
+          const cards =
+            testimonialTrackRef.current?.querySelectorAll(
+              ".testimonial-card"
+            );
+
+          if (!cards?.length) return;
+
+          const nextIndex = Math.min(
+            activeTestimonial + 1,
+            cards.length - 1
+          );
+
+          cards[nextIndex]?.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }}
+      >
+        →
+      </button>
+
+    </div>
+
+
+    {/* ================= DONJA TRAKA ================= */}
+
+    <div className="clients-bottom">
+      <span></span>
+
+      <p>
+        ISKUSTVA UGOSTITELJA KOJI KORISTE NAŠ SISTEM
+      </p>
+
+      <span></span>
+    </div>
+
+
+    {/* DOTS */}
+
+    <div className="testimonial-dots">
+
+      {[0, 1, 2, 3].map((index) => (
+        <button
+          key={index}
+          type="button"
+          className={`testimonial-dot ${
+            activeTestimonial === index ? "active" : ""
+          }`}
+          onClick={() => {
+            const cards =
+              testimonialTrackRef.current?.querySelectorAll(
+                ".testimonial-card"
+              );
+
+            if (!cards?.[index]) return;
+
+            cards[index].scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }}
+          aria-label={`Prikaži utisak ${index + 1}`}
+        />
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+
 
 
       {/* ================= FAQ ================= */}
@@ -1191,7 +1479,7 @@ const faqs = [
   <div className="faq-container">
 
     <span className="faq-label">
-      FAQ
+      {/*Ovdje ide teekst "FAQ" */}
     </span>
 
     <h2>
@@ -1249,133 +1537,366 @@ const faqs = [
 
 
 
-  {/* ================= ISPROBAJ ================= */}
+	  
 
-      <section id="isprobaj" className="try-section">
-  <div className="try-container">
 
-    <span className="try-label">
-      ISPROBAJ
-    </span>
 
-    <h2>
-      Isprobaj "Vaš restoran" sistem
-    </h2>
+{/* ================= KONTAKT ================= */}
 
-    <p className="try-description">
-      Isprobaj sistem 7 dana potpuno besplatno
-      i upoznaj se sa svim mogućnostima aplikacije.
-    </p>
+<section className="contact-section" id="kontakt">
+  <div className="contact-container">
 
-    <div className="try-form-card">
+    <div className="contact-info">
 
-  {!sent ? (
-    <>
-
-      <h3>
-        Pošalji podatke za besplatan test
-      </h3>
+      <h2>Imate pitanje?</h2>
 
       <p>
-        Digitalizuj svoj restoran
+        Javite nam se ili ostavite podatke i saznajte kako vaš ugostiteljski objekat može biti bolje organizovan.
       </p>
+
+      <div className="contact-details">
+
+        <div className="contact-detail">
+          <span>📞</span>
+          <div>
+            <small>Telefon</small>
+            <strong>+382 68 274 764</strong>
+          </div>
+        </div>
+
+        <div className="contact-detail">
+          <span>📧</span>
+          <div>
+            <small>Email</small>
+            <strong>Selmirmne@hotmail.com</strong>
+          </div>
+        </div>
+
+        <div className="contact-detail">
+          <span>📍</span>
+          <div>
+            <small>Lokacija</small>
+            <strong>Plav, Montenegro</strong>
+          </div>
+        </div>
+
+      </div>
+
+
+ 
+{/* ================= DRUŠTVENE MREŽE ================= */}
+
+<div className="contact-socials">
+
+  <a
+    href="https://www.instagram.com/vasrestoran/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="instagram"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.25a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25Z"
+      />
+    </svg>
+
+    Instagram
+  </a>
+
+
+  <a
+    href="https://www.facebook.com/profile.php?id=61594371663467"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+    className="facebook"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M14 8h3V4h-3c-2.761 0-5 2.239-5 5v3H6v4h3v6h4v-6h3l1-4h-4V9c0-.552.448-1 1-1Z"
+      />
+    </svg>
+
+    Facebook
+  </a>
+
+</div>
+ 
+
+
+
+      
+
+    </div>
+
+
+    {/* ================= DESNA STRANA - FORMA ================= */}
+
+   <div className="contact-form-card">
+
+  <div className="contact-form-heading">
+    <h3>Unesite podatke</h3>
+    
+  </div>
 
    
 
-      <input
-        type="tel"
-        placeholder="Broj telefona"
-        value={phone}
-        autoComplete="tel"
-        inputMode="tel"
-        onChange={(e) => {
-          const value = e.target.value.replace(/[^\d+]/g, "");
-          setPhone(value);
-        }}
-      />
+      {!sent ? (
 
-      <textarea
-        placeholder="Ime vašeg restorana (nije obavezno)"
-        value={info}
-        autoComplete="off"
-        onChange={(e) => setInfo(e.target.value)}
-      />
+        <div className="contact-form">
 
-      <button onClick={handleSubmit}>
-        Pošalji prijavu
-      </button>
 
-    </>
-  ) : (
-    <div className="successInside">
+          <div className="contact-field">
+            <label>Broj telefona</label>
 
-      <div className="check">
-        ✓
-      </div>
+            <input
+              type="tel"
+              placeholder="Unesite broj telefona"
+              value={phone}
+              autoComplete="tel"
+              inputMode="tel"
+              onChange={(e) => {
+                const value = e.target.value.replace(/[^\d+]/g, "");
+                setPhone(value);
+              }}
+            />
+          </div>
 
-      <b>
-        Prijava uspješna
-      </b>
 
-      <p>
-        Kontaktiraćemo vas uskoro
-      </p>
+          <div className="contact-field">
+            <label>Ime restorana</label>
+
+            <input
+              type="text"
+              placeholder="Ime vašeg restorana (nije obavezno)"
+              value={info}
+              autoComplete="off"
+              onChange={(e) => setInfo(e.target.value)}
+            />
+          </div>
+
+
+          <button
+            className="contact-submit"
+            onClick={handleSubmit}
+          >
+            Pošalji prijavu
+          </button>
+
+
+          <small className="contact-security">
+            🔒 Vaši podaci su sigurni i koriste se samo za kontakt.
+          </small>
+
+        </div>
+
+      ) : (
+
+        <div className="contact-success">
+
+          <div className="check">✓</div>
+
+          <b>Prijava uspješna</b>
+
+          <p>
+            Kontaktiraćemo vas uskoro
+          </p>
+
+        </div>
+
+      )}
 
     </div>
-  )}
-
-</div>
 
   </div>
 </section>
-	  
 
 
+ 
 
-      {/* ================= KONTAKT ================= */}
-
- <section id="kontakt" className="content-section">
-
-  <div className="section-container">
-
-    <span className="section-label">
-      KONTAKT
-    </span>
-
-    <h2>
-      Imate pitanje?
-    </h2>
-
-    <p>
-      Javite nam se i saznajte kako Vaš restoran
-      može biti bolje organizovan.
-    </p>
-
-    <button
-      className="panelBtn"
-      onClick={handlePanel}
-    >
-      📊 Panel
-    </button>
-
-
-
-
-
-  </div>
-
-</section>
 	  
 	  
 	  {/* TOAST */}
-{toast && (
-  <div className={`toast ${toastType}`}>
-    <span className="toastIcon">!</span>
-    {toast}
+ {toast && (
+  <div className="notification">
+    <div className="notification-icon">
+      {toastType === "success" ? "✓" : "!"}
+    </div>
+
+    <div className="notification-content">
+      <div className="notification-title">
+        {toastType === "success" ? "Uspješno" : "Provjerite podatke"}
+      </div>
+
+      <div className="notification-message">
+        {toast}
+      </div>
+    </div>
+
+    <button
+      className="notification-close"
+      onClick={() => setToast(null)}
+      aria-label="Zatvori"
+    >
+      ×
+    </button>
   </div>
 )}
 
-	  
+	  {/* ================= TRIAL DIALOG ================= */}
+
+{isTrialOpen && (
+  <div
+    className="trial-modal-overlay"
+    onMouseDown={(e) => {
+      if (e.target === e.currentTarget) {
+        closeTrialDialog();
+      }
+    }}
+  >
+
+    <div className="trial-modal">
+
+      {/* CLOSE */}
+
+      <button
+        className="trial-modal-close"
+        onClick={closeTrialDialog}
+        aria-label="Zatvori"
+      >
+        ×
+      </button>
+
+
+     {!sent1 ? (
+        <>
+
+          <div className="trial-modal-top">
+
+            <div className="trial-modal-badge">
+              7 DANA BESPLATNO
+            </div>
+
+            <h2>
+              Isprobaj Vaš Restoran
+            </h2>
+
+            <p>
+              Pogledaj kako tvoj restoran može raditi
+              jednostavnije, brže i organizovanije.
+            </p>
+
+          </div>
+
+
+          <div className="trial-modal-benefits">
+
+            <div>
+              <span>✓</span>
+              Potpuni pristup sistemu
+            </div>
+
+            <div>
+              <span>✓</span>
+              Besplatna kratka obuka
+            </div>
+
+            <div>
+              <span>✓</span>
+              Bez obaveze nakon probnog perioda
+            </div>
+
+          </div>
+
+
+          <div className="trial-form">
+
+            <label>
+              Broj telefona
+            </label>
+
+            <input
+              type="tel"
+              placeholder="+382 6X XXX XXX"
+              value={phone}
+              autoComplete="tel"
+              inputMode="tel"
+              onChange={(e) => {
+                const value = e.target.value.replace(/[^\d+]/g, "");
+                setPhone(value);
+              }}
+            />
+
+
+            <label>
+              Naziv restorana
+              
+            </label>
+
+            <input
+              type="text"
+              placeholder="Npr. Restoran Aurora (nije obavezno)"
+              value={info}
+              autoComplete="off"
+              onChange={(e) => setInfo(e.target.value)}
+            />
+
+
+         <button
+  className="trial-submit"
+  onClick={handleSubmit1}
+>
+  Zatraži besplatni test
+</button>
+
+          </div>
+
+
+          <div className="trial-modal-note">
+            Vaši podaci se koriste samo za kontakt
+            i dogovor oko početka testiranja.
+          </div>
+
+        </>
+      ) : (
+
+       <div className="trial-success">
+
+  <div className="trial-success-icon">
+    ✓
+  </div>
+
+  <h2>
+    Prijava je uspješna!
+  </h2>
+
+  <p>
+    Hvala vam. Kontaktiraćemo vas uskoro
+    kako bismo dogovorili početak besplatnog testa.
+  </p>
+
+  <button
+  className="trial-success-button"
+  onClick={closeTrialDialog}
+>
+  U redu
+</button>
+
+</div>
+
+      )}
+
+    </div>
+
+  </div>
+)}
 
     </div>
   );

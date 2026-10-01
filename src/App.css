@@ -1099,8 +1099,12 @@ section {
     box-shadow 0.25s ease;
 }
 
+.pricing-card { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; } 
+
+  
+
 .pricing-card:hover {
-  transform: translateY(-4px);
+ transform: translateY(-6px);
 
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.12);
@@ -2055,7 +2059,7 @@ section {
    ========================================= */
 
 .flow-step:hover .flow-video-wrap {
-  transform: translateY(-7px);
+  transform: none;
 
   border-color: rgba(0, 0, 0, 0.18);
 
@@ -2583,430 +2587,164 @@ section {
 }
 
 
-
-
 /* =========================================
-PRE / POSLIJE
+   PRE / POSLIJE
 ========================================= */
 
 .preposle-section {
-min-height: 750px;
+  min-height: 750px;
 
-padding: 120px 30px;
+  padding: 120px 30px;
 
-background: #ffffff;
+  background: #ffffff;
 
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-text-align: center;
+  text-align: center;
 }
 
 .preposle-container {
-width: 100%;
-max-width: 1400px;
+  width: 100%;
+  max-width: 1500px;
 
-margin: 0 auto;
+  margin: 0 auto;
 }
 
 /* =========================================
-UVOD
+   NASLOV
+========================================= */
+
+.preposle-container h2 {
+  margin: 0;
+}
+
+/* =========================================
+   PODNASLOV
 ========================================= */
 
 .preposle-intro {
-max-width: 900px;
+  max-width: 900px;
 
-margin: 25px auto 0;
+  margin: 25px auto 0;
 
-font-size: clamp(17px, 2vw, 21px);
+  font-size: clamp(17px, 2vw, 21px);
 
-line-height: 1.6;
+  line-height: 1.6;
 
-color: #555;
+  color: #555;
 }
 
 /* =========================================
-GLAVNA ŠEMA
+   SLIKA
 ========================================= */
 
-.preposle-comparison {
-position: relative;
+.preposle-image-wrapper {
+  width: 100%;
 
-width: 100%;
-max-width: 1050px;
+  margin: 70px auto 0;
 
-margin: 80px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-display: grid;
+.preposle-image {
+  display: block;
 
-grid-template-columns: 1fr 70px 1fr;
+  width: auto;
+  height: auto;
 
-align-items: stretch;
+  max-width: 100%;
+  max-height: none;
+
+  object-fit: contain;
 }
 
 /* =========================================
-LIJEVA / DESNA STRANA
-========================================= */
-
-.preposle-side {
-display: flex;
-flex-direction: column;
-align-items: center;
-
-min-width: 0;
-}
-
-/* NASLOV PRE / SADA */
-
-.preposle-title {
-margin-bottom: 35px;
-
-font-size: 14px;
-
-letter-spacing: 3px;
-
-font-weight: 700;
-
-color: #777;
-}
-
-/* =========================================
-ELEMENTI
-========================================= */
-
-.preposle-items {
-width: 100%;
-
-display: grid;
-
-grid-template-columns: repeat(2, 1fr);
-
-gap: 45px 30px;
-}
-
-.preposle-item {
-display: flex;
-
-flex-direction: column;
-
-align-items: center;
-
-justify-content: flex-start;
-
-min-width: 0;
-}
-
-/* =========================================
-IKONA / SLIČICA
-========================================= */
-
-.preposle-icon {
-width: 72px;
-height: 72px;
-
-margin-bottom: 13px;
-
-border-radius: 18px;
-
-background: #f3effa;
-
-display: flex;
-align-items: center;
-justify-content: center;
-
-font-size: 31px;
-
-border: 1px solid rgba(0, 0, 0, 0.05);
-
-box-shadow:
-0 6px 18px rgba(0, 0, 0, 0.06);
-
-transition:
-transform 0.25s ease,
-box-shadow 0.25s ease;
-}
-
-.preposle-item:hover .preposle-icon {
-transform: translateY(-4px);
-
-box-shadow:
-0 10px 25px rgba(0, 0, 0, 0.10);
-}
-
-/* TEKST ISPOD */
-
-.preposle-item span {
-max-width: 150px;
-
-font-size: 15px;
-
-line-height: 1.4;
-
-font-weight: 600;
-
-color: #333;
-}
-
-/* =========================================
-SREDIŠNJA VERTIKALNA LINIJA
-========================================= */
-
-.preposle-divider {
-position: relative;
-
-display: flex;
-
-justify-content: center;
-
-align-self: stretch;
-}
-
-.preposle-divider span {
-width: 1px;
-
-height: 100%;
-
-background: #d8d8d8;
-
-display: block;
-}
-
-/* MALI KRUG NA SREDINI */
-
-.preposle-divider::after {
-content: "";
-
-position: absolute;
-
-top: 50%;
-left: 50%;
-
-width: 10px;
-height: 10px;
-
-transform: translate(-50%, -50%);
-
-border-radius: 50%;
-
-background: #111;
-
-box-shadow:
-0 0 0 7px #fff,
-0 0 0 8px #d8d8d8;
-}
-
-/* =========================================
-TABLET
+   TABLET
 ========================================= */
 
 @media (max-width: 900px) {
 
-.preposle-section {
-min-height: auto;
+  .preposle-section {
+    min-height: auto;
 
+    padding: 110px 25px;
+  }
 
-padding: 110px 25px;
+  .preposle-image-wrapper {
+    margin-top: 60px;
+  }
 
-
-}
-
-.preposle-comparison {
-max-width: 750px;
-
-
-grid-template-columns: 1fr 50px 1fr;
-
-margin-top: 65px;
-
-
-}
-
-.preposle-items {
-gap: 35px 20px;
-}
-
-.preposle-icon {
-width: 64px;
-height: 64px;
-
-
-font-size: 27px;
-
-
-}
-
-.preposle-item span {
-font-size: 14px;
-}
-
+  .preposle-image {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* =========================================
-TELEFON
+   TELEFON
 ========================================= */
 
 @media (max-width: 700px) {
 
-.preposle-section {
-min-height: auto;
+  .preposle-section {
+    min-height: auto;
 
+    padding: 100px 20px;
+  }
 
-padding: 100px 20px;
+  .preposle-container h2 {
+    font-size: 40px;
+  }
 
+  .preposle-intro {
+    font-size: 17px;
 
-}
+    margin-top: 20px;
+  }
 
-.preposle-container h2 {
-font-size: 40px;
-}
+  .preposle-image-wrapper {
+    margin-top: 50px;
+  }
 
-.preposle-intro {
-font-size: 17px;
-
-
-margin-top: 20px;
-
-
-}
-
-.preposle-comparison {
-margin-top: 55px;
-
-
-grid-template-columns: 1fr 35px 1fr;
-
-
-}
-
-.preposle-title {
-margin-bottom: 28px;
-
-
-
-font-size: 13px;
-
-letter-spacing: 2.5px;
-
-
-}
-
-.preposle-items {
-grid-template-columns: 1fr;
-
-
-gap: 32px;
-
-
-}
-
-.preposle-icon {
-width: 58px;
-height: 58px;
-
-margin-bottom: 10px;
-
-border-radius: 15px;
-
-font-size: 24px;
-
-
-}
-
-.preposle-item span {
-font-size: 13px;
-
-
-line-height: 1.35;
-
-
-}
-
-.preposle-divider span {
-background: #d5d5d5;
-}
-
-.preposle-divider::after {
-width: 8px;
-height: 8px;
-
-
-box-shadow:
-  0 0 0 5px #fff,
-  0 0 0 6px #d5d5d5;
-
-
-}
-
+  .preposle-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* =========================================
-MALI TELEFONI
+   MALI TELEFONI
 ========================================= */
 
 @media (max-width: 400px) {
 
-.preposle-section {
-padding: 90px 15px;
+  .preposle-section {
+    padding: 90px 15px;
+  }
+
+  .preposle-container h2 {
+    font-size: 34px;
+  }
+
+  .preposle-intro {
+    font-size: 16px;
+  }
+
+  .preposle-image-wrapper {
+    margin-top: 40px;
+  }
 }
 
-.preposle-container h2 {
-font-size: 34px;
-}
-
-.preposle-intro {
-font-size: 16px;
-}
-
-.preposle-comparison {
-grid-template-columns: 1fr 28px 1fr;
 
 
-margin-top: 45px;
-
-
-}
-
-.preposle-title {
-font-size: 12px;
-
-
-letter-spacing: 2px;
-
-
-}
-
-.preposle-icon {
-width: 52px;
-height: 52px;
-
-font-size: 22px;
-
-border-radius: 14px;
-
-
-}
-
-.preposle-item span {
-font-size: 12px;
-}
-
-}
 
 /* =========================================
-REDUCED MOTION
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-.preposle-icon {
-transition: none;
-}
-
-}
-
- /* =========================================
-KAKO ZAPOČETI
+   KAKO ZAPOČETI
 ========================================= */
 
 .start-section {
@@ -3030,8 +2768,9 @@ KAKO ZAPOČETI
   margin: 0 auto;
 }
 
+
 /* =========================================
-UVOD
+   UVOD
 ========================================= */
 
 .start-intro {
@@ -3046,47 +2785,71 @@ UVOD
   color: #555;
 }
 
+
 /* =========================================
-KORACI
+   KORACI — PIRAMIDA
 ========================================= */
 
 .start-steps {
   width: 100%;
-  max-width: 1200px;
+
+  max-width: 1100px;
 
   margin: 70px auto 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 0;
+}
+
+
+/* =========================================
+   POJEDINAČNI KORAK
+========================================= */
+
+.start-step {
+  position: relative;
+
+  width: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 25px;
+  min-height: 110px;
+
+  padding: 25px 80px;
+
+  text-align: center;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.04);
+
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
 }
 
-/* =========================================
-POJEDINAČNI KORAK
-========================================= */
-
-.start-step {
-  flex: 1;
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 20px;
-
-  text-align: left;
-
-  padding: 5px 0;
-}
-
-/* =========================================
-BROJ
-========================================= */
 
 .start-number {
-  flex-shrink: 0;
+  position: absolute;
+
+  left: 30px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
 
   width: 64px;
   height: 64px;
@@ -3110,8 +2873,85 @@ BROJ
   letter-spacing: 1px;
 }
 
+
+.start-content {
+  width: 100%;
+
+  min-width: 0;
+
+  text-align: center;
+}
+ 
+
+/* PRVI — NAJŠIRI */
+
+.start-step:nth-child(1) {
+  width: 100%;
+}
+
+
+/* DRUGI — SREDNJI */
+
+.start-step:nth-child(3) {
+  width: 82%;
+}
+
+
+/* TREĆI — NAJUŽI */
+
+.start-step:nth-child(5) {
+  width: 64%;
+}
+
+
 /* =========================================
-SADRŽAJ KORAKA
+   HOVER
+========================================= */
+
+.start-step:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(0, 0, 0, 0.14);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   BROJ
+========================================= */
+
+.start-number {
+  flex-shrink: 0;
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  background: #f3effa;
+
+  border: 1px solid #e5dff0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: #111;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================
+   SADRŽAJ
 ========================================= */
 
 .start-content {
@@ -3140,24 +2980,25 @@ SADRŽAJ KORAKA
   color: #666;
 }
 
+
 /* =========================================
-STRELICA
+   STRELICA — VERTIKALNA
 ========================================= */
 
 .start-arrow {
-  flex-shrink: 0;
+  width: 100%;
 
-  width: 40px;
+  height: 55px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   color: #999;
 
-  font-size: 30px;
-
-  line-height: 1;
+  font-size: 28px;
 }
 
 .start-arrow span {
@@ -3168,26 +3009,18 @@ STRELICA
     color 0.25s ease;
 }
 
-/* =========================================
-HOVER
-========================================= */
+
+/* HOVER NA KORAK */
 
 .start-step:hover + .start-arrow span {
-  transform: translateX(4px);
+  transform: translateY(4px);
 
   color: #111;
 }
 
-/* =========================================
-ZAVRŠNA STRELICA
-========================================= */
-
-.start-final-arrow {
-  height: 55px;
-}
 
 /* =========================================
-CTA
+   CTA
 ========================================= */
 
 .start-button {
@@ -3198,7 +3031,7 @@ CTA
 
   min-width: 210px;
 
-  margin-top: 55px;
+  margin-top: 45px;
 
   padding: 15px 32px;
 
@@ -3235,8 +3068,9 @@ CTA
     0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+
 /* =========================================
-TABLET
+   TABLET
 ========================================= */
 
 @media (max-width: 1000px) {
@@ -3251,12 +3085,24 @@ TABLET
     max-width: 900px;
 
     margin-top: 60px;
+  }
 
-    gap: 14px;
+  .start-step:nth-child(1) {
+    width: 100%;
+  }
+
+  .start-step:nth-child(3) {
+    width: 84%;
+  }
+
+  .start-step:nth-child(5) {
+    width: 68%;
   }
 
   .start-step {
-    gap: 12px;
+    padding: 22px 30px;
+
+    gap: 18px;
   }
 
   .start-number {
@@ -3273,19 +3119,18 @@ TABLET
   .start-content p {
     font-size: 14px;
   }
-
-  .start-arrow {
-    width: 28px;
-
-    font-size: 25px;
-  }
 }
 
+
 /* =========================================
-TELEFON
+   TELEFON
 ========================================= */
 
 @media (max-width: 700px) {
+
+
+
+
 
   .start-section {
     min-height: auto;
@@ -3309,49 +3154,57 @@ TELEFON
     max-width: 100%;
 
     margin-top: 50px;
-
-    gap: 8px;
   }
 
-  .start-step {
-    flex: 1;
+  .start-step:nth-child(1) {
+  width: 100%;
+}
 
-    gap: 8px;
+.start-step:nth-child(3) {
+  width: 82%;
+}
 
-    padding: 0;
+.start-step:nth-child(5) {
+  width: 64%;
+}
 
-    text-align: left;
-  }
+ .start-step {
+  min-height: 95px;
 
-  .start-number {
-    width: 44px;
-    height: 44px;
+  padding: 20px 60px;
+}
 
-    font-size: 13px;
-  }
+.start-number {
+  left: 18px;
+
+  width: 44px;
+  height: 44px;
+
+  font-size: 13px;
+}
 
   .start-content h3 {
-    font-size: 15px;
+    font-size: 16px;
 
     margin-bottom: 5px;
   }
 
   .start-content p {
-    font-size: 12px;
+    font-size: 13px;
 
-    line-height: 1.35;
+    line-height: 1.4;
   }
 
   .start-arrow {
-    width: 20px;
+    height: 42px;
 
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .start-button {
     min-width: 190px;
 
-    margin-top: 40px;
+    margin-top: 35px;
 
     padding: 14px 28px;
 
@@ -3359,8 +3212,9 @@ TELEFON
   }
 }
 
+
 /* =========================================
-MALI TELEFONI
+   MALI TELEFONI
 ========================================= */
 
 @media (max-width: 400px) {
@@ -3373,41 +3227,52 @@ MALI TELEFONI
     font-size: 34px;
   }
 
+
+.start-step:nth-child(1) {
+  width: 100%;
+}
+
+.start-step:nth-child(3) {
+  width: 82%;
+}
+
+.start-step:nth-child(5) {
+  width: 64%;
+}
+
   .start-intro {
     font-size: 16px;
   }
 
-  .start-steps {
-    gap: 4px;
-  }
-
-  .start-step {
-    gap: 5px;
+    .start-step {
+    padding: 17px 50px;
   }
 
   .start-number {
-    width: 36px;
-    height: 36px;
+    left: 14px;
+
+    width: 38px;
+    height: 38px;
 
     font-size: 11px;
   }
 
   .start-content h3 {
-    font-size: 13px;
+    font-size: 14px;
 
     margin-bottom: 4px;
   }
 
   .start-content p {
-    font-size: 10px;
+    font-size: 11px;
 
-    line-height: 1.3;
+    line-height: 1.35;
   }
 
   .start-arrow {
-    width: 16px;
+    height: 38px;
 
-    font-size: 16px;
+    font-size: 19px;
   }
 
   .start-button {
@@ -3419,17 +3284,22 @@ MALI TELEFONI
   }
 }
 
+
 /* =========================================
-REDUCED MOTION
+   REDUCED MOTION
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
+  .start-step,
   .start-arrow span,
   .start-button {
     transition: none;
   }
 }
+
+
+
 
 
 /* =========================================
@@ -3540,7 +3410,7 @@ TESTIMONIAL CARD
 
   text-align: left;
 
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 
   transition:
     transform 0.25s ease,
@@ -3880,4 +3750,1612 @@ REDUCED MOTION
   .testimonial-dot {
     transition: none;
   }
+}
+
+
+/* =========================================================
+   TRIAL MODAL
+   ========================================================= */
+
+.trial-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  animation: trialOverlayIn 0.25s ease;
+}
+
+
+.trial-modal {
+  position: relative;
+
+  width: min(520px, 100%);
+
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  padding: 42px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35);
+
+  animation: trialModalIn 0.3s cubic-bezier(.16, 1, .3, 1);
+}
+
+
+/* CLOSE */
+
+.trial-modal-close {
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f3f3f3;
+
+  color: #222;
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.trial-modal-close:hover {
+  background: #e8e8e8;
+  transform: rotate(90deg);
+}
+
+
+/* TOP */
+
+.trial-modal-top {
+  padding-right: 35px;
+}
+
+.trial-modal-badge {
+  display: inline-flex;
+
+  padding: 7px 12px;
+
+  margin-bottom: 16px;
+
+  border-radius: 999px;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+
+.trial-modal-top h2 {
+  margin: 0 0 12px;
+
+  font-size: 32px;
+  line-height: 1.1;
+
+  letter-spacing: -0.03em;
+
+  color: #111;
+}
+
+
+.trial-modal-top p {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.65;
+
+  color: #666;
+}
+
+
+/* BENEFITS */
+
+.trial-modal-benefits {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin: 26px 0;
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background: #f7f7f7;
+}
+
+
+.trial-modal-benefits div {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 13px;
+  color: #333;
+}
+
+
+.trial-modal-benefits span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: #111;
+  color: white;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* FORM */
+
+.trial-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.trial-form label {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #222;
+}
+
+
+.trial-form label span {
+  font-weight: 400;
+  color: #999;
+}
+
+
+.trial-form input {
+  width: 100%;
+  box-sizing: border-box;
+
+  height: 52px;
+
+  margin-bottom: 17px;
+
+  padding: 0 15px;
+
+  border: 1px solid #dedede;
+  border-radius: 11px;
+
+  background: #fafafa;
+
+  color: #111;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.trial-form input:focus {
+  border-color: #111;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+
+.trial-form input::placeholder {
+  color: #aaa;
+}
+
+
+/* SUBMIT */
+
+.trial-submit {
+  width: 100%;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 4px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.trial-submit span {
+  font-size: 20px;
+
+  transition: transform 0.2s ease;
+}
+
+
+.trial-submit:hover {
+  background: #222;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+.trial-submit:hover span {
+  transform: translateX(4px);
+}
+
+
+.trial-submit:active {
+  transform: translateY(0);
+}
+
+
+/* NOTE */
+
+.trial-modal-note {
+  margin-top: 16px;
+
+  text-align: center;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: #999;
+}
+
+
+/* SUCCESS */
+
+.trial-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 25px 5px 5px;
+}
+
+
+.trial-success-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 50%;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+
+.trial-success h2 {
+  margin: 0 0 10px;
+
+  font-size: 27px;
+
+  color: #111;
+}
+
+
+.trial-success p {
+  max-width: 380px;
+
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.6;
+
+  color: #666;
+}
+
+
+.trial-success-button {
+  width: 150px;
+  height: 46px;
+
+  margin-top: 25px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #111;
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+
+.trial-success-button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* ANIMATIONS */
+
+@keyframes trialOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes trialModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .trial-modal-overlay {
+    padding: 14px;
+  }
+
+  .trial-modal {
+    width: 100%;
+
+    padding: 30px 22px 24px;
+
+    border-radius: 20px;
+
+    max-height: calc(100vh - 28px);
+  }
+
+  .trial-modal-top {
+    padding-right: 25px;
+  }
+
+  .trial-modal-top h2 {
+    font-size: 27px;
+  }
+
+  .trial-modal-top p {
+    font-size: 14px;
+  }
+
+  .trial-modal-benefits {
+    margin: 22px 0;
+
+    padding: 15px;
+  }
+
+  .trial-modal-benefits div {
+    font-size: 12px;
+  }
+
+  .trial-modal-close {
+    top: 13px;
+    right: 13px;
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 22px;
+  }
+
+}
+/* =========================================
+   NOTIFICATION - ALWAYS ABOVE MODAL
+========================================= */
+
+.notification {
+  position: fixed !important;
+
+  left: 50% !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: 30px !important;
+
+  width: 360px !important;
+  max-width: calc(100vw - 24px) !important;
+
+  min-height: 68px !important;
+  height: auto !important;
+
+  transform: translateX(-50%) !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  box-sizing: border-box !important;
+
+  padding: 12px 14px !important;
+
+  background: #dc2626 !important;
+  color: #fff !important;
+
+  border: 0 !important;
+  border-radius: 14px !important;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.45) !important;
+
+  z-index: 2147483647 !important;
+
+  isolation: isolate !important;
+}
+
+
+/* IKONA */
+
+.notification-icon {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin-right: 11px !important;
+
+  border-radius: 50% !important;
+
+  background: #fff !important;
+  color: #dc2626 !important;
+
+  font-size: 18px !important;
+  font-weight: 800 !important;
+}
+
+
+/* SADRŽAJ */
+
+.notification-content {
+  flex: 1 !important;
+  min-width: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.notification-title {
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+.notification-message {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+}
+
+
+/* CLOSE */
+
+.notification-close {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin-left: 8px !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  background: transparent !important;
+
+  color: rgba(255, 255, 255, 0.85) !important;
+
+  font-size: 22px !important;
+  line-height: 1 !important;
+
+  cursor: pointer !important;
+}
+
+.notification-close:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 50% !important;
+}
+
+
+/* ANIMACIJA */
+
+@keyframes notificationAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 15px) !important;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) !important;
+  }
+}
+
+
+/* TELEFON */
+
+@media (max-width: 600px) {
+  .notification {
+    left: 50% !important;
+    bottom: 20px !important;
+
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+
+    min-height: 64px !important;
+
+    padding: 11px 12px !important;
+
+    transform: translateX(-50%) !important;
+  }
+
+  .notification-icon {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+
+    margin-right: 10px !important;
+
+    font-size: 16px !important;
+  }
+
+  .notification-title {
+    font-size: 13px !important;
+  }
+
+  .notification-message {
+    font-size: 12px !important;
+  }
+}
+
+  /* ================= KLIJENTI ================= */
+
+.clients-container {
+  text-align: center;
+}
+
+.clients-intro {
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+
+/* LOGOI */
+
+.clients-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 35px 55px;
+
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.client-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  margin: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  width: auto;
+  height: auto;
+
+  transition: transform 0.3s ease;
+}
+
+.client-logo img {
+  display: block;
+
+  width: auto;
+  height: 70px;
+  max-width: 170px;
+
+  object-fit: contain;
+
+  opacity: 0.8;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.client-logo:hover {
+  transform: translateY(-3px);
+}
+
+.client-logo:hover img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+
+/* DONJI TEKST */
+
+.clients-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 45px;
+}
+
+.clients-bottom span {
+  display: block;
+
+  width: 45px;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.clients-bottom p {
+  margin: 0;
+
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 500;
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 900px) {
+  .clients-logos {
+    gap: 35px 45px;
+  }
+
+  .client-logo img {
+    height: 60px;
+    max-width: 145px;
+  }
+}
+
+
+/* ================= TELEFON ================= */
+
+@media (max-width: 650px) {
+
+  .clients-intro {
+    margin-bottom: 30px;
+  }
+
+  .clients-logos {
+    gap: 28px 25px;
+    padding: 0 15px;
+  }
+
+  .client-logo {
+    width: calc(50% - 15px);
+  }
+
+  .client-logo img {
+    height: 50px;
+    max-width: 125px;
+  }
+}
+
+  .clients-bottom {
+    gap: 10px;
+    margin-top: 35px;
+  }
+
+  .clients-bottom span {
+    width: 25px;
+  }
+
+  .clients-bottom p {
+    font-size: 9px;
+    letter-spacing: 1.3px;
+  }
+
+}
+
+
+/* ================= MALI TELEFONI ================= */
+
+@media (max-width: 400px) {
+
+ .clients-logos {
+    gap: 25px 15px;
+  }
+
+  
+
+  .client-logo {
+    width: calc(50% - 10px);
+  }
+
+ .client-logo img {
+    height: 44px;
+    max-width: 110px;
+  }
+
+  .clients-bottom p {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+}
+
+
+
+/* =========================================
+   KONTAKT - SAAS FORMA
+   DODATI NA KRAJ CSS-a
+========================================= */
+
+.contact-section {
+  min-height: 750px;
+  padding: 120px 30px;
+
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 520px;
+
+  align-items: center;
+  gap: 90px;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   LIJEVA STRANA
+========================================= */
+
+.contact-info {
+  max-width: 520px;
+}
+
+.contact-info .section-label {
+  margin-bottom: 18px;
+}
+
+.contact-info h2 {
+  margin: 0;
+
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.05;
+
+  font-weight: 700;
+  letter-spacing: -2px;
+
+  color: #111;
+}
+
+.contact-info > p {
+  max-width: 500px;
+
+  margin: 25px 0 0;
+
+  font-size: 20px;
+  line-height: 1.6;
+
+  color: #555;
+}
+
+
+/* =========================================
+   PODACI
+========================================= */
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin-top: 40px;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.contact-detail > span {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #f3effa;
+
+  font-size: 19px;
+}
+
+.contact-detail div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.contact-detail small {
+  font-size: 12px;
+
+  color: #888;
+
+  font-weight: 500;
+}
+
+.contact-detail strong {
+  font-size: 15px;
+
+  color: #111;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   DESNA STRANA - FORMA
+========================================= */
+
+.contact-form-card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 38px;
+
+  background: #f7f7f7;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.contact-form-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 7px 12px;
+
+  margin-bottom: 22px;
+
+  border-radius: 999px;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =========================================
+   FORMA
+========================================= */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-field label {
+  margin-bottom: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #222;
+}
+
+.contact-field input {
+  width: 100%;
+
+  height: 52px;
+
+  margin-bottom: 17px;
+
+  padding: 0 15px;
+
+  border: 1px solid #dedede;
+  border-radius: 11px;
+
+  background: #fafafa;
+
+  color: #111;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact-field input:focus {
+  border-color: #111;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+.contact-field input::placeholder {
+  color: #aaa;
+}
+
+
+/* =========================================
+   DUGME
+========================================= */
+
+.contact-submit {
+  width: 100%;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 4px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #111;
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact-submit:hover {
+  background: #222;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.contact-submit:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   SIGURNOST
+========================================= */
+
+.contact-security {
+  display: block;
+
+  margin-top: 16px;
+
+  text-align: center;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: #999;
+}
+
+
+/* =========================================
+   USPJEŠNA PRIJAVA
+========================================= */
+
+.contact-success {
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #111;
+}
+
+.contact-success .check {
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 20px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #111;
+
+  color: white;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.contact-success b {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 22px;
+}
+
+.contact-success p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  color: #666;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .contact-section {
+    padding: 110px 25px;
+  }
+
+  .contact-container {
+    max-width: 700px;
+
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+
+    text-align: center;
+  }
+
+  .contact-info {
+    max-width: 650px;
+
+    margin: 0 auto;
+  }
+
+  .contact-info > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-details {
+    align-items: center;
+  }
+
+  .contact-detail {
+    width: 280px;
+
+    text-align: left;
+  }
+
+  .contact-form-card {
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    text-align: left;
+  }
+}
+
+
+/* =========================================
+   TELEFON
+========================================= */
+
+@media (max-width: 700px) {
+
+  .contact-section {
+    min-height: auto;
+
+    padding: 100px 20px;
+  }
+
+  .contact-container {
+    gap: 45px;
+  }
+
+  .contact-info h2 {
+    font-size: 40px;
+
+    letter-spacing: -1px;
+  }
+
+  .contact-info > p {
+    font-size: 17px;
+
+    margin-top: 20px;
+  }
+
+  .contact-details {
+    gap: 15px;
+
+    margin-top: 30px;
+  }
+
+  .contact-detail {
+    width: 100%;
+
+    max-width: 280px;
+  }
+
+  .contact-form-card {
+    padding: 30px 22px;
+
+    border-radius: 20px;
+  }
+
+}
+
+
+/* =========================================
+   MALI TELEFONI
+========================================= */
+
+@media (max-width: 400px) {
+
+  .contact-section {
+    padding: 90px 18px;
+  }
+
+  .contact-info h2 {
+    font-size: 34px;
+  }
+
+  .contact-info > p {
+    font-size: 16px;
+  }
+
+  .contact-form-card {
+    padding: 26px 18px;
+  }
+
+  .contact-detail {
+    max-width: 260px;
+  }
+
+}
+
+
+/* =========================================
+   DRUŠTVENE MREŽE
+========================================= */
+
+.contact-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.contact-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #111;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.contact-socials a:hover {
+  transform: translateY(-2px);
+  opacity: 0.7;
+}
+
+/* SAMO IKONICE */
+
+.contact-socials a.instagram svg {
+  color: #E1306C !important;
+  stroke: #E1306C !important;
+}
+
+.contact-socials a.facebook svg {
+  color: #1877F2 !important;
+  stroke: #1877F2 !important;
+}
+
+.contact-socials svg {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   STRELICA + TEKST PREMA FORMI
+========================================= */
+
+.contact-form-arrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-top: 38px;
+}
+
+.contact-form-arrow .arrow {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 22px;
+  font-weight: 400;
+
+  animation: contactArrowDown 1.8s ease-in-out infinite;
+}
+
+.contact-form-arrow p {
+  margin: 0;
+
+  max-width: 340px;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #666;
+  font-weight: 500;
+}
+
+@keyframes contactArrowDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+
+/* =========================================
+   TABLET - DRUŠTVENE MREŽE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .contact-socials {
+    justify-content: center;
+  }
+
+  .contact-form-arrow {
+    justify-content: center;
+
+    text-align: left;
+  }
+
+}
+
+
+/* =========================================
+   TELEFON - DRUŠTVENE MREŽE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .contact-socials {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    margin-top: 25px;
+  }
+
+  .contact-socials a {
+    padding: 9px 13px;
+
+    font-size: 13px;
+  }
+
+  .contact-form-arrow {
+    gap: 11px;
+
+    margin-top: 30px;
+  }
+
+  .contact-form-arrow .arrow {
+    width: 38px;
+    height: 38px;
+
+    font-size: 20px;
+  }
+
+  .contact-form-arrow p {
+    font-size: 13px;
+
+    max-width: 280px;
+  }
+
+}
+
+
+/* =========================================
+   MALI TELEFONI
+========================================= */
+
+@media (max-width: 400px) {
+
+  .contact-socials {
+    gap: 8px;
+  }
+
+  .contact-socials a {
+    padding: 8px 11px;
+  }
+
+  .contact-form-arrow {
+    gap: 9px;
+  }
+
+  .contact-form-arrow p {
+    font-size: 12px;
+  }
+
+}
+
+/* =========================================
+   FLOATING IKONICE - DESNA STRANA
+========================================= */
+
+.floating-socials {
+  position: fixed;
+
+  top: 50%;
+  right: 25px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  z-index: 9999;
+}
+
+.floating-socials a {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #fff;
+  color: #111;
+
+  border: 1px solid #e5e5e5;
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.floating-socials a:hover {
+  transform: translateX(-4px);
+
+  background: #111;
+  color: #fff;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.floating-socials svg {
+  width: 21px;
+  height: 21px;
+
+  fill: currentColor;
+}
+
+
+/* =========================================
+   TELEFON
+========================================= */
+
+@media (max-width: 700px) {
+
+  .floating-socials {
+    top: auto;
+    right: 15px;
+    bottom: 20px;
+
+    transform: none;
+
+    gap: 8px;
+  }
+
+  .floating-socials a {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+  }
+
+  .floating-socials svg {
+    width: 19px;
+    height: 19px;
+  }
+
 }
