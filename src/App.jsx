@@ -27,6 +27,10 @@ function App() {
 
 
 
+/* 
+ 
+ Sekcija ima vise od linkova
+
 const sections = [
   { id: "pocetna", label: "Početna" },
   { id: "problem", label: "Problem" },
@@ -34,6 +38,17 @@ const sections = [
   { id: "funkcije", label: "Funkcije" },
   { id: "pre/posle", label: "Pre/Posle" },
   { id: "kako-zapoceti", label: "Kako-započeti" },
+  { id: "paketi", label: "Paketi" },
+  { id: "klijenti", label: "Klijenti" },
+  { id: "faq", label: "FAQ" },
+  { id: "kontakt", label: "Kontakt" },
+];
+*/
+
+
+const sections = [
+  { id: "pocetna", label: "Početna" },
+  { id: "rjesenje", label: "Rješenje" },
   { id: "paketi", label: "Paketi" },
   { id: "klijenti", label: "Klijenti" },
   { id: "faq", label: "FAQ" },
