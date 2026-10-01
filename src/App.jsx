@@ -54,6 +54,9 @@ const [sent1, setSent1] = useState(false);
 const [isTrialOpen, setIsTrialOpen] = useState(false);
 
 
+
+const [socialDialog, setSocialDialog] = useState(null);
+
 const [openFaq, setOpenFaq] = useState(null);
 
 const [toast, setToast] = useState(null);
@@ -124,10 +127,48 @@ const closeTrialDialog = (fromBack = false) => {
   }
 };
 
+
+
+const openSocialDialog = (platform) => {
+  setSocialDialog(platform);
+  document.body.style.overflow = "hidden";
+
+  window.history.pushState({ socialModal: true }, "");
+};
+
+const closeSocialDialog = (fromBack = false) => {
+  setSocialDialog(null);
+  document.body.style.overflow = "";
+
+  if (!fromBack && window.history.state?.socialModal) {
+    window.history.back();
+  }
+};
+
+const openSocialPage = () => {
+  const url =
+    socialDialog === "instagram"
+      ? "https://www.instagram.com/vasrestoran/"
+      : "https://www.facebook.com/profile.php?id=61594371663467";
+
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  closeSocialDialog();
+};
+
+
+
+
+
 useEffect(() => {
   const handlePopState = () => {
     if (isTrialOpen) {
       closeTrialDialog(true);
+      return;
+    }
+
+    if (socialDialog) {
+      closeSocialDialog(true);
     }
   };
 
@@ -136,7 +177,7 @@ useEffect(() => {
   return () => {
     window.removeEventListener("popstate", handlePopState);
   };
-}, [isTrialOpen]);
+}, [isTrialOpen, socialDialog]);
 
 
 
@@ -490,10 +531,10 @@ const faqs = [
 <div className="floating-socials">
 
   {/* Instagram */}
-  <a
-    href="https://www.instagram.com/vasrestoran/"
-    target="_blank"
-    rel="noopener noreferrer"
+  <button
+    type="button"
+    className="floating-social-button"
+    onClick={() => openSocialDialog("instagram")}
     aria-label="Instagram"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -501,13 +542,13 @@ const faqs = [
         d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.25a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25Z"
       />
     </svg>
-  </a>
+  </button>
 
   {/* Facebook */}
-  <a
-    href="https://www.facebook.com/profile.php?id=61594371663467"
-    target="_blank"
-    rel="noopener noreferrer"
+  <button
+    type="button"
+    className="floating-social-button"
+    onClick={() => openSocialDialog("facebook")}
     aria-label="Facebook"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -515,9 +556,7 @@ const faqs = [
         d="M14 8h3V4h-3c-2.761 0-5 2.239-5 5v3H6v4h3v6h4v-6h3l1-4h-4V9c0-.552.448-1 1-1Z"
       />
     </svg>
-  </a>
-
-  
+  </button>
 
 </div>
 
@@ -1749,6 +1788,97 @@ const faqs = [
     </button>
   </div>
 )}
+
+
+
+
+
+
+{/* ================= SOCIAL DIALOG ================= */}
+
+{socialDialog && (
+  <div
+    className="social-modal-overlay"
+    onMouseDown={(e) => {
+      if (e.target === e.currentTarget) {
+        closeSocialDialog();
+      }
+    }}
+  >
+    <div className="social-modal">
+
+      <button
+        className="social-modal-close"
+        onClick={() => closeSocialDialog()}
+        aria-label="Zatvori"
+      >
+        ×
+      </button>
+
+    <div
+  className={`social-modal-icon ${
+    socialDialog === "instagram" ? "instagram" : "facebook"
+  }`}
+>
+        {socialDialog === "instagram" ? (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.25a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25Z"
+            />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M14 8h3V4h-3c-2.761 0-5 2.239-5 5v3H6v4h3v6h4v-6h3l1-4h-4V9c0-.552.448-1 1-1Z"
+            />
+          </svg>
+        )}
+      </div>
+
+      <h2>
+        Otvoriti{" "}
+        {socialDialog === "instagram"
+          ? "Instagram"
+          : "Facebook"}?
+      </h2>
+
+      <p>
+        Bićete preusmjereni na naš{" "}
+        {socialDialog === "instagram"
+          ? "Instagram"
+          : "Facebook"} profil.
+      </p>
+
+      <div className="social-modal-actions">
+
+        <button
+          type="button"
+          className="social-modal-cancel"
+          onClick={() => closeSocialDialog()}
+        >
+          Ostani na sajtu
+        </button>
+
+        <button
+          type="button"
+          className="social-modal-confirm"
+          onClick={openSocialPage}
+        >
+          Otvori
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+)}
+
+
+
+
+
+
+
 
 	  {/* ================= TRIAL DIALOG ================= */}
 
