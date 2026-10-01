@@ -614,6 +614,7 @@ section {
     min-height: auto;
     padding: 30px 25px;
   }
+}  
 
 /* =========================
    NAVBAR - TELEFON
@@ -708,6 +709,7 @@ section {
   /* =========================
    HERO - TELEFON
 ========================= */
+@media (max-width: 700px) {
 
 .hero {
   height: auto;
@@ -800,8 +802,8 @@ section {
   .section-container p {
     font-size: 17px;
   }
-}
-
+ 
+ }
 
 /* =========================
    MALI TELEFONI
@@ -4555,7 +4557,7 @@ REDUCED MOTION
     letter-spacing: 1.3px;
   }
 
-}
+ 
 
 
 /* ================= MALI TELEFONI ================= */
