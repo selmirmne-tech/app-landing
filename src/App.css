@@ -40,12 +40,12 @@ section {
 
 /* 1. sekcija - BIJELA */
 #klijenti {
-  background: #fff;
+  background: rgb(243, 239, 250);
 }
 
 /* 2. sekcija - 5% LJUBIČASTA + 95% BIJELA */
 #paketi {
-  background: rgb(243, 239, 250);
+  background: #fff;
 }
 
 /* 3. sekcija - BIJELA */
@@ -60,7 +60,7 @@ section {
 
 /* 5. sekcija - BIJELA */
 #kontakt {
-  background: #fff;
+  background: rgb(243, 239, 250);
 }
  #funkcije {
  background: rgb(243, 239, 250);
