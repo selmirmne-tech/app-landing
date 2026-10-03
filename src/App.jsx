@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { getAuth } from "firebase/auth";
+import Player from "@vimeo/player";
 import { useNavigate } from "react-router-dom";
 import { ref, push, set } from "firebase/database";
 import { db } from "./firebase";
@@ -11,6 +12,9 @@ import slika4 from "./assets/clients/slika4.webp";
 import slika5 from "./assets/clients/slika5.webp";
 import slika6 from "./assets/clients/slika6.webp";
 import preposleImage from "./assets/prePosle.webp";
+import poster from "./assets/IMG_0828.webp";
+
+
 import {
   FaBolt,
   FaShieldAlt,
@@ -26,6 +30,33 @@ function App() {
   const [activeSection, setActiveSection] = useState("pocetna");
 const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+
+
+
+
+
+
+
+  const [vimeoStarted, setVimeoStarted] = useState(false);
+const iframeRef = useRef(null);
+
+useEffect(() => {
+  if (!iframeRef.current) return;
+
+  const player = new Player(iframeRef.current);
+
+  const handlePlay = () => {
+  setTimeout(() => {
+    setVimeoStarted(true);
+  }, 150);
+};
+
+  player.on("play", handlePlay);
+
+  return () => {
+    player.off("play", handlePlay);
+  };
+}, []);
 
 /* 
  
@@ -93,6 +124,13 @@ const scrollToSection = (id) => {
 
   const duration = 800;
   let startTime = null;
+
+
+
+
+ 
+
+
 
   const animateScroll = (currentTime) => {
     if (!startTime) startTime = currentTime;
@@ -620,92 +658,64 @@ const faqs = [
 </div>
 
       {/* ================= HERO ================= */}
-
-      <section id="pocetna" className="hero">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {/* Video u pozadini */}
-        <video
-          className="hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/restaurant.mp4" type="video/mp4" />
-        </video>
-
-        {/* Blur + tamni sloj */}
-        <div className="hero-overlay"></div>
-
-        <div className="hero-content">
-
-         <h1>
-  <span>Vaš restoran organizovan</span>
-  <span>do posljednjeg detalja</span>
-</h1>
-
-          <p>
-            Narudžbine, stanje pića, QR meni i svakodnevno
-            <br className="desktop-break" />
-            poslovanje u jednom sistemu
-          </p>
-
-<div className="hero-buttons">
-
-  <button
-    className="hero-button"
-    onClick={openTrialDialog}
-  >
-    Isprobaj besplatno
-  </button>
-
  
+<section id="pocetna" className="hero">
 
-</div>
+  <div className="hero-video-container">
 
-        </div>
+    <img
+      className={`hero-video-poster ${
+        vimeoStarted ? "poster-hidden" : ""
+      }`}
+      src={poster}
+      alt=""
+    />
 
-        <div className="hero-bottom-text">
-          SOFTVER ZA UGOSTITELJE
-        </div>
+    <iframe
+      ref={iframeRef}
+      className="hero-video"
+      src="https://player.vimeo.com/video/1232658602?background=1&autoplay=1&loop=1&muted=1"
+      title="Restaurant video"
+      frameBorder="0"
+      allow="autoplay; fullscreen"
+      allowFullScreen
+    ></iframe>
 
-      </section>
+  </div>
 
+  <div className="hero-overlay"></div>
 
-    
-	  
-	  
-	  
-	 
+  <div className="hero-content">
 
- 
-	  
-	  
-	  
-	  
-	  
+    <h1>
+      <span>Vaš restoran organizovan</span>
+      <span>do posljednjeg detalja</span>
+    </h1>
+
+    <p>
+      Narudžbine, stanje pića, QR meni i svakodnevno
+      <br className="desktop-break" />
+      poslovanje u jednom sistemu
+    </p>
+
+    <div className="hero-buttons">
+
+      <button
+        className="hero-button"
+        onClick={openTrialDialog}
+      >
+        Isprobaj besplatno
+      </button>
+
+    </div>
+
+  </div>
+
+  <div className="hero-bottom-text">
+    SOFTVER ZA UGOSTITELJE
+  </div>
+
+</section>
 	        {/* ================= PROBLEM ================= */}
 
       
@@ -1311,7 +1321,12 @@ const faqs = [
 
     {/* ================= LOGOI KLIJENATA ================= */}
 
-    <div className="clients-logos">
+<div className="clients-logos">
+
+  <div className="clients-logos-track">
+
+    {/* PRVI SET */}
+    <div className="clients-logos-group">
 
       <div className="client-logo">
         <img src={slika1} alt="Klijent 1" />
@@ -1338,6 +1353,40 @@ const faqs = [
       </div>
 
     </div>
+
+
+    {/* DRUGI IDENTIČAN SET */}
+    <div className="clients-logos-group" aria-hidden="true">
+
+      <div className="client-logo">
+        <img src={slika1} alt="" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika2} alt="" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika3} alt="" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika4} alt="" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika5} alt="" />
+      </div>
+
+      <div className="client-logo">
+        <img src={slika6} alt="" />
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 
     {/* ================= RECENZIJE ================= */}

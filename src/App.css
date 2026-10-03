@@ -250,9 +250,18 @@ section {
 
 /* VIDEO */
 
-.hero-video {
-  position: absolute;
+ 
 
+.hero-video-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  background: #000;
+}
+
+.hero-video-poster {
+  position: absolute;
   inset: 0;
 
   width: 100%;
@@ -260,12 +269,45 @@ section {
 
   object-fit: cover;
 
-  z-index: 0;
+  z-index: 2;
 
-  filter: blur(5px);
+  opacity: 1;
+  visibility: visible;
 
-  transform: scale(1.06);
+  transition:
+    opacity 0.8s ease,
+    visibility 0s linear 0.8s;
+
+  pointer-events: none;
 }
+
+.hero-video-poster.poster-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hero-video {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 100vw;
+  height: 56.25vw;
+
+  min-width: 177.78vh;
+  min-height: 100%;
+
+  transform: translate(-50%, -50%);
+
+  border: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
 
 
 /* TAMNI SLOJ PREKO VIDEA */
@@ -4602,34 +4644,123 @@ REDUCED MOTION
 /* LOGOI */
 
 .clients-logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
+  overflow: hidden;
 
-  gap: 35px 55px;
-
-  max-width: 900px;
   margin: 0 auto;
+
+  position: relative;
+
+  /* blagi fade sa lijeve i desne strane */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
+
+
+/* TRaka */
+
+.clients-logos-track {
+  display: flex;
+
+  width: max-content;
+
+  animation: clientsMarquee 28s linear infinite;
+
+  will-change: transform;
+}
+
+
+/* GRUPA LOGOA */
+
+.clients-logos-group {
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap: 80px;
+
+  padding-right: 80px;
+}
+
+
+/* POJEDINAČNI LOGO */
 
 .client-logo {
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  padding: 0;
-  margin: 0;
+  flex-shrink: 0;
+
+  width: auto;
+  height: 80px;
 
   background: transparent;
   border: none;
-  border-radius: 0;
   box-shadow: none;
 
-  width: auto;
-  height: auto;
-
   transition: transform 0.3s ease;
+}
+
+
+.client-logo img {
+  display: block;
+
+  width: auto;
+  height: 70px;
+
+  max-width: 170px;
+
+  object-fit: contain;
+
+  opacity: 0.75;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* HOVER */
+
+.client-logo:hover {
+  transform: translateY(-2px);
+}
+
+.client-logo:hover img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+
+/* ================= ANIMACIJA ================= */
+
+@keyframes clientsMarquee {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
 }
 
 .client-logo img {
@@ -4709,24 +4840,31 @@ REDUCED MOTION
 
 @media (max-width: 650px) {
 
-  .clients-intro {
-    margin-bottom: 30px;
+  .clients-logos {
+    margin-top: 10px;
   }
 
-  .clients-logos {
-    gap: 28px 25px;
-    padding: 0 15px;
+  .clients-logos-track {
+    animation-duration: 22s;
+  }
+
+  .clients-logos-group {
+    gap: 40px;
+    padding-right: 40px;
   }
 
   .client-logo {
-    width: calc(50% - 15px);
+    width: auto;
+    height: 58px;
   }
 
   .client-logo img {
-    height: 50px;
-    max-width: 125px;
+    height: 48px;
+    max-width: 120px;
   }
-}
+
+
+  /* DONJI TEKST */
 
   .clients-bottom {
     gap: 10px;
@@ -4742,6 +4880,7 @@ REDUCED MOTION
     letter-spacing: 1.3px;
   }
 
+}
  
 
 
@@ -4749,24 +4888,23 @@ REDUCED MOTION
 
 @media (max-width: 400px) {
 
- .clients-logos {
-    gap: 25px 15px;
+  .clients-logos-track {
+    animation-duration: 20s;
   }
 
-  
+  .clients-logos-group {
+    gap: 32px;
+
+    padding-right: 32px;
+  }
 
   .client-logo {
-    width: calc(50% - 10px);
+    height: 52px;
   }
 
- .client-logo img {
+  .client-logo img {
     height: 44px;
     max-width: 110px;
-  }
-
-  .clients-bottom p {
-    font-size: 8px;
-    letter-spacing: 1px;
   }
 
 }
