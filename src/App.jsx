@@ -773,12 +773,12 @@ const faqs = [
         <div className="flow-video-wrap">
 
           <div className="flow-video">
-            <iframe
-              src="https://player.vimeo.com/video/VIDEO_ID_1?autoplay=1&muted=1&loop=1&background=1&autopause=0"
-              title="Konobar unosi porudžbinu"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
+           <iframe
+  src="https://player.vimeo.com/video/1232456821?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+  title="Konobar unosi porudžbinu"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowFullScreen
+/>
           </div>
 
         </div>
@@ -815,11 +815,11 @@ const faqs = [
 
           <div className="flow-video">
             <iframe
-              src="https://player.vimeo.com/video/VIDEO_ID_2?autoplay=1&muted=1&loop=1&background=1&autopause=0"
-              title="Kuhinja prima porudžbinu"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
+  src="https://player.vimeo.com/video/1232456752?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+  title="Kuhinja prima porudžbinu"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowFullScreen
+/>
           </div>
 
         </div>
@@ -855,12 +855,12 @@ const faqs = [
         <div className="flow-video-wrap">
 
           <div className="flow-video">
-            <iframe
-              src="https://player.vimeo.com/video/VIDEO_ID_3?autoplay=1&muted=1&loop=1&background=1&autopause=0"
-              title="Jelo stiže do gosta"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
+         <iframe
+  src="https://player.vimeo.com/video/1232469575?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+  title="Vlasnik prati poslovanje"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowFullScreen
+/>
           </div>
 
         </div>
@@ -876,7 +876,7 @@ const faqs = [
           </h3>
 
           <p>
-            Svaka porudžbina prati svoj tok od kuhinje do gosta.
+            Konobar dobija notifikaciju i servira jelo.
           </p>
 
         </div>
@@ -896,12 +896,12 @@ const faqs = [
         <div className="flow-video-wrap">
 
           <div className="flow-video">
-            <iframe
-              src="https://player.vimeo.com/video/VIDEO_ID_4?autoplay=1&muted=1&loop=1&background=1&autopause=0"
-              title="Vlasnik prati poslovanje"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
+          <iframe
+  src="https://player.vimeo.com/video/1232456781?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+  title="Vlasnik prati poslovanje"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowFullScreen
+          />
           </div>
 
         </div>
@@ -1995,7 +1995,7 @@ const faqs = [
 
             <input
               type="tel"
-              placeholder="+382 6X XXX XXX"
+              placeholder="Broj telefona"
               value={phone}
               autoComplete="tel"
               inputMode="tel"
