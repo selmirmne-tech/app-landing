@@ -975,7 +975,7 @@ const faqs = [
     </span>
 
     <h2>
-      Još uvek se pitaš zašto nas biraju?
+      Još uvijek se pitaš zašto nas biraju?
     </h2>
 
     <p className="funkcije-intro">
