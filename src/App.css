@@ -1497,39 +1497,7 @@ section {
   }
 }
 
-/* =========================
-   PANEL DUGME
-========================= */
 
-.panelBtn {
-  margin-top: 35px;
-
-  padding: 13px 30px;
-
-  border: none;
-
-  border-radius: 50px;
-
-  background: #111;
-
-  color: white;
-
-  font-size: 16px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
-}
-
-.panelBtn:hover {
-  background: #333;
-
-  transform: translateY(-2px);
-}
 
 
 /* =========================
@@ -1755,22 +1723,16 @@ section {
 /* PANEL */
 
 .panelBtn {
-  margin-top: 30px;
+  display: block;
+  margin: 30px auto 0;
 
   padding: 13px 30px;
-
   border: none;
-
   border-radius: 50px;
-
   background: #111;
-
   color: white;
-
   font-size: 16px;
-
   font-weight: 600;
-
   cursor: pointer;
 
   transition:
@@ -1780,7 +1742,6 @@ section {
 
 .panelBtn:hover {
   background: #333;
-
   transform: translateY(-2px);
 }
 

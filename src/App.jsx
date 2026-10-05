@@ -2111,14 +2111,31 @@ const faqs = [
 
 </div>
 
+
+
+
       )}
 
     </div>
 
   </div>
+  
+  
 )}
 
+
+  <button
+  type="button"
+  className="panelBtn"
+  onClick={handlePanel}
+>
+  📊 Panel
+</button>
+
+
     </div>
+	
+	
   );
 }
 
