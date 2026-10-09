@@ -13,6 +13,7 @@ import slika5 from "./assets/clients/slika5.webp";
 import slika6 from "./assets/clients/slika6.webp";
 import preposleImage from "./assets/prePosle.webp";
 import poster from "./assets/IMG_0828.webp";
+import { Analytics } from "@vercel/analytics/react";
 
 
 import {
@@ -2005,7 +2006,7 @@ const faqs = [
             </div>
 
             <h2>
-              Isprobaj Vaš Restoran
+              Isprobaj Vaš Restoran aplikaciju
             </h2>
 
             <p>
@@ -2133,8 +2134,16 @@ const faqs = [
 </button>
 
 
+
+<Analytics />
+
+
     </div>
-	
+
+
+
+ 
+
 	
   );
 }
