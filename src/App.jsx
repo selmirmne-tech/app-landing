@@ -2088,7 +2088,9 @@ const faqs = [
         </>
       ) : (
 
-       <div className="trial-success">
+  
+  
+<div className="trial-success">
 
   <div className="trial-success-icon">
     ✓
@@ -2099,18 +2101,35 @@ const faqs = [
   </h2>
 
   <p>
-    Hvala vam. Kontaktiraćemo vas uskoro
-    kako bismo dogovorili početak besplatnog testa.
+    Hvala vam na prijavi. Sada možete preuzeti
+    aplikaciju Vaš Restoran i započeti testiranje.
   </p>
 
-  <button
-  className="trial-success-button"
-  onClick={closeTrialDialog}
+<a
+  href="https://github.com/selmirmne-tech/restoranAplikacija/raw/main/VasRestoran.apk"
+  className="trial-download-button"
+  download="RESTORAN.apk"
 >
-  U redu
-</button>
+  <span className="download-icon">
+    <svg viewBox="0 0 24 24" width="23" height="23"
+         fill="none" stroke="currentColor" strokeWidth="2"
+         strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <path d="M7 10l5 5 5-5"/>
+      <path d="M12 15V3"/>
+    </svg>
+  </span>
+  <span>Preuzmi Android aplikaciju</span>
+</a>
+
+  <p>
+    Nakon preuzimanja otvorite APK datoteku
+    i potvrdite instalaciju na svom telefonu.
+  </p>
 
 </div>
+
+  
 
 
 

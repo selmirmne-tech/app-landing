@@ -6183,4 +6183,51 @@ REDUCED MOTION
   transform: scale(0.96);
 }
 
+.trial-download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 370px;
+  min-height: 58px;
+  margin: 25px auto;
+  padding: 15px 24px;
+  box-sizing: border-box;
 
+  background: #1768b5;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(23, 104, 181, 0.22);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trial-download-button:hover {
+  background: #125493;
+  box-shadow: 0 6px 18px rgba(23, 104, 181, 0.3);
+}
+
+.trial-download-button:active {
+  transform: scale(0.98);
+}
+
+.download-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .trial-download-button {
+    max-width: 100%;
+    font-size: 15px;
+  }
+}
