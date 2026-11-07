@@ -2122,6 +2122,37 @@ const faqs = [
   <span>Preuzmi Android aplikaciju</span>
 </a>
 
+
+<a
+  href="https://mountain-view-web-omega.vercel.app/"
+  className="trial-download-button"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span className="download-icon">
+    <svg
+      viewBox="0 0 24 24"
+      width="23"
+      height="23"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15 15 0 0 1 0 20" />
+      <path d="M12 2a15 15 0 0 0 0 20" />
+    </svg>
+  </span>
+
+  <span>Web verzija / iOS uređaji</span>
+</a>
+
+
+
+
   <p>
     Nakon preuzimanja otvorite APK datoteku
     i potvrdite instalaciju na svom telefonu.
