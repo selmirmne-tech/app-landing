@@ -2074,7 +2074,7 @@ const faqs = [
   className="trial-submit"
   onClick={handleSubmit1}
 >
-  Zatraži besplatni test
+  Započni besplatni test
 </button>
 
           </div>
