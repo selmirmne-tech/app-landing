@@ -1317,7 +1317,10 @@ const faqs = [
       Ugostitelji koji su prešli na jednostavniji način rada.
     </h2>
 
-  
+    <p className="social-proof-description">
+      Pogledajte restorane i ugostiteljske objekte koji koriste naš sistem
+      za svakodnevno poslovanje.
+    </p>
 
 
     {/* ================= LOGOI KLIJENATA ================= */}

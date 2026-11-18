@@ -3934,6 +3934,29 @@ MALI TELEFONI
   }
 }
 
+
+.social-proof-container h2 {
+  margin-bottom: 16px;
+}
+
+.social-proof-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #777;
+  margin: 0 0 55px;
+}
+
+.clients-logos {
+  padding-top: 35px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+
+
+
 /* =========================================
 REDUCED MOTION
 ========================================= */
