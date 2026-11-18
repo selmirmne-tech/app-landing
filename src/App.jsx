@@ -11,6 +11,7 @@ import slika3 from "./assets/clients/slika3.webp";
 import slika4 from "./assets/clients/slika4.webp";
 import slika5 from "./assets/clients/slika5.webp";
 import slika6 from "./assets/clients/slika6.webp";
+import slika7 from "./assets/clients/slika7.webp";
 import preposleImage from "./assets/prePosle.webp";
 import poster from "./assets/IMG_0828.webp";
 import { Analytics } from "@vercel/analytics/react";
@@ -1352,6 +1353,10 @@ const faqs = [
       <div className="client-logo">
         <img src={slika6} alt="Klijent 6" />
       </div>
+	  
+	   <div className="client-logo">
+        <img src={slika7} alt="" />
+      </div>
 
     </div>
 
@@ -1381,6 +1386,10 @@ const faqs = [
 
       <div className="client-logo">
         <img src={slika6} alt="" />
+      </div>
+	  
+	   <div className="client-logo">
+        <img src={slika7} alt="" />
       </div>
 
     </div>
