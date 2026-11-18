@@ -17,6 +17,8 @@ import poster from "./assets/IMG_0828.webp";
 import { Analytics } from "@vercel/analytics/react";
 
 
+
+
 import {
   FaBolt,
   FaShieldAlt,
